@@ -19,6 +19,7 @@ in {
         just
       ];
       shellAliases = {
+        "hs" = "just home-switch";
         "js" = "just switch";
         "ju" = "just update";
       };

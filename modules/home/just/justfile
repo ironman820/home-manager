@@ -13,10 +13,16 @@ bios:
 switch:
   flake switch ~/.config/flake#
 
+home-switch:
+  home-manager switch
+
 update:
   #!/usr/bin/env bash
   cd ~/.config/flake
   flake update
   flake switch
+  cd ~/.config/home-manager
+  flake update
+  home-manager switch
   flatpak update -y
 
