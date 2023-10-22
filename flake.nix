@@ -1,0 +1,73 @@
+{
+  description = "My Nix Flakes";
+
+  inputs = {
+    blockyalarm = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:ironman820/blockyalarm";
+    };
+    flake = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:snowfallorg/flake";
+    };
+    home-manager = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager/release-23.05";
+    };
+    nix-ld = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:mic92/nix-ld";
+    };
+    nixos-hardware.url = "github:nixos/nixos-hardware";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    # acc5f7b - IcedTea v8 Stable
+    nixpkgs-acc5f7b.url = "github:nixos/nixpkgs/acc5f7b";
+    # ba45a55 - The last stable update of PHP 7.4
+    nixpkgs-ba45a55.url = "github:nixos/nixpkgs/ba45a55";
+    snowfall-lib = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:snowfallorg/lib";
+    };
+    sops-nix = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:mic92/sops-nix";
+    };
+    stylix = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:danth/stylix/release-23.05";
+    };
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+  };
+
+  outputs = inputs: let
+    lib = inputs.snowfall-lib.mkLib {
+      inherit inputs;
+      src = ./.;
+
+      snowfall = {
+        meta = {
+          name = "ironman";
+          title = "Ironman Home Config";
+        };
+        namespace = "ironman";
+      };
+    };
+  in lib.mkFlake {
+    channels-config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [
+        "openssl-1.1.1w"
+        "teams-1.5.00.23861"
+      ];
+    };
+
+    overlays = with inputs; [
+      flake.overlays.default
+      blockyalarm.overlays."package/blockyalarm"
+    ];
+
+    alias = {
+      shells.default = "ironman-shell";
+    };
+  };
+}
