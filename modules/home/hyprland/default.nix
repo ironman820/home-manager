@@ -11,6 +11,7 @@ in {
   };
 
   config = mkIf cfg.enable {
+    ironman.home.waybar = enabled;
     home.file.".config/hypr/hyprland.conf".source = mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/modules/home/hyprland/hyprland.conf";
   };
 }
