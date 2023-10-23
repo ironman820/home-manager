@@ -26,6 +26,7 @@ in {
         bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
         bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
         set-option -sa terminal-features ',xterm-kitty:RGB'
+        set-option -g detach-on-destroy off
       '';
     };
     programs.tmux = {

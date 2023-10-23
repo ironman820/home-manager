@@ -107,6 +107,7 @@ return {
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",
+    dependencies = "luckasRanarison/tree-sitter-hypr",
   },
   -- Undo-Tree
   {

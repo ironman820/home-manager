@@ -32,6 +32,7 @@
   "plenary.nvim": { "branch": "master", "commit": "50012918b2fc8357b87cff2a7f7f0446e47da174" },
   "telescope.nvim": { "branch": "master", "commit": "74ce793a60759e3db0d265174f137fb627430355" },
   "toggleterm.nvim": { "branch": "main", "commit": "c80844fd52ba76f48fabf83e2b9f9b93273f418d" },
+  "tree-sitter-hypr": { "branch": "master", "commit": "90b3ddf8a85b5ea3d9dc4920fddb16182a192e14" },
   "undotree": { "branch": "main", "commit": "41f56b30cc774ad26c4945c7e10673453893e7ad" },
   "vim-code-dark": { "branch": "master", "commit": "d05d1ab602048fc13fd8cc70cd722c083b0fd904" },
   "which-key.nvim": { "branch": "main", "commit": "ce741eb559c924d72e3a67d2189ad3771a231414" }
