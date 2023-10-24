@@ -14,6 +14,13 @@ in
         enable = true;
         wallpaper = ./voidbringer.png;
     };
+    neomutt = {
+      enable = true;
+      accounts = {
+        royell = {
+        };
+      };
+    };
     networking = enabled;
     suites.workstation = enabled;
     user = enabled;

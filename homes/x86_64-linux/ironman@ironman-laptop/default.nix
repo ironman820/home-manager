@@ -11,6 +11,7 @@ in
       wallpaper = ./scream.jpg;
     };
     networking = enabled;
+    neomutt = enabled;
     personal-apps = enabled;
     suites.workstation = enabled;
     user = enabled;

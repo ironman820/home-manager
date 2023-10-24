@@ -81,16 +81,19 @@ local opts = {
 local mappings = {
 
   a = { "<cmd>CellularAutomaton make_it_rain<cr>", "Animation" },
+  b = {
+    name = "[B]uffer",
+    c = { "<cmd>bd<cr>", "[C]lose" },
+    n = { "<cmd>new<cr>", "[N]ew" },
+    s = { "<cmd>w<cr>", "[S]ave" },
+  },
   e = { "<cmd>NvimTreeFocus<cr>", "Explorer" },
   f = {
-    name = "[F]ile",
+    name = "[F]ind",
     b = { "<cmd>Telescope buffers<cr>", "[B]uffers" },
-    c = { "<cmd>bd<cr>", "[C]lose" },
-    o = { "<cmd>Telescope find_files<cr>", "[O]pen" },
+    f = { "<cmd>Telescope find_files<cr>", "[F]iles" },
     p = { "<cmd>BufferLinePick<cr>", "[P]ick" },
-    q = { "<cmd>q<cr>", "[Q]uit" },
     r = { "<cmd>Telescope oldfiles<cr>", "[R]ecent files" },
-    s = { "<cmd>w<cr>", "[S]ave" },
     t = { "<cmd>Telescope live_grep<cr>", "[T]ext search" },
   },
   l = {

@@ -18,13 +18,13 @@ in
       libreoffice-fresh
       microsoft-edge
       obs-studio
-      obsidian
+      # obsidian
       putty
       remmina
       telegram-desktop
       vlc
       virt-viewer
-      zotero
+      # zotero
     ];
   };
 }

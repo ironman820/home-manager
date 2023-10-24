@@ -21,7 +21,6 @@ in {
   config = mkIf cfg.enable {
     ironman.home.tmux = {
       extraConfig = ''
-        # Vim-Like select/copy
         bind-key -T copy-mode-vi v send-keys -X begin-selection
         bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
         bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
@@ -29,6 +28,9 @@ in {
         set-option -g detach-on-destroy off
       '';
     };
+    home.packages = with pkgs.ironman; [
+      t
+    ];
     programs.tmux = {
       inherit (cfg) baseIndex clock24 extraConfig historyLimit keyMode secureSocket shortcut;
       enable = true;
@@ -39,6 +41,7 @@ in {
         }
         sensible
         yank
+        pkgs.ironman.tmux-session-wizard
       ];
     };
   };

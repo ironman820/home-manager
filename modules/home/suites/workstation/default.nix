@@ -13,6 +13,7 @@ in
     ironman.home = {
       gnome = enabled;
       gui-apps = enabled;
+      lf = enabled;
       sync = enabled;
       video-tools = enabled;
       virtual.host = enabled;

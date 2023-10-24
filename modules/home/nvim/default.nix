@@ -42,7 +42,14 @@ in {
       };
       packages = with pkgs; [
         cargo
-        python3
+        fd
+        go
+        julia
+        luarocks
+        (python3.withPackages (py: with py; [
+          pip
+        ]))
+        tree-sitter
         unzip
         wl-clipboard
       ];

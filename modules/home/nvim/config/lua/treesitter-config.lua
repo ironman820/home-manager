@@ -1,7 +1,7 @@
 local configs = require("nvim-treesitter.configs")
 configs.setup {
   -- Add a language of your choice
-  ensure_installed = { "nix", "python", "lua", "javascript", },
+  ensure_installed = { "bash", "c", "comment", "commonlisp", "css", "csv", "diff", "dockerfile", "git_config", "gitignore", "gpg", "html", "htmldjango", "ini", "javascript", "json", "lua", "luadoc", "luap", "luau", "make", "markdown", "markdown_inline", "nix", "passwd", "php", "phpdoc", "python", "query", "regex", "requirements", "sql", "ssh_config", "toml", "vim", "vimdoc", "xml", "yaml", },
   sync_install = false,
   ignore_install = { "" }, -- List of parsers to ignore installing
   highlight = {
@@ -23,7 +23,6 @@ configs.setup {
     max_file_lines = 3000
   }
 }
-
 local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 parser_config.hypr = {
   install_info = {

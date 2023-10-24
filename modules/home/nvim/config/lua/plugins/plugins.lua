@@ -17,7 +17,7 @@ return {
     -- "folke/tokyonight.nvim",
     -- opts = {},
     -- "lunarvim/synthwave84.nvim",
-    "tomasiser/vim-code-dark",
+    "folke/tokyonight.nvim",
     lazy = false,
     priority = 1000,
   },
@@ -74,7 +74,6 @@ return {
     version = false,
     config = function()
       require("mini.animate").setup()
-      require("mini.comment").setup()
     end
   },
   -- Nvim-Surround

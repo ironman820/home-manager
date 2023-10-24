@@ -15,7 +15,6 @@ in
         dia
         # glocom
         qgis
-        teams
         thunderbird
         wireshark
         zoom-us

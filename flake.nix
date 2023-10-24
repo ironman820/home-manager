@@ -12,14 +12,15 @@
     };
     home-manager = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager";
     };
     nix-ld = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:mic92/nix-ld";
     };
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:nixos/nixpkgs";
+    nixpkgs-23-05.url = "github:/nixos/nixpkgs/nixos-23.05";
     # acc5f7b - IcedTea v8 Stable
     nixpkgs-acc5f7b.url = "github:nixos/nixpkgs/acc5f7b";
     # ba45a55 - The last stable update of PHP 7.4
@@ -36,7 +37,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:danth/stylix/release-23.05";
     };
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    tmux-session-wizard = {
+      flake = false;
+      url = "github:27medkamal/tmux-session-wizard";
+    };
   };
 
   outputs = inputs: let
@@ -57,7 +61,6 @@
       allowUnfree = true;
       permittedInsecurePackages = [
         "openssl-1.1.1w"
-        "teams-1.5.00.23861"
       ];
     };
 

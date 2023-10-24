@@ -30,6 +30,7 @@ in
         pv
         restic
         ripgrep
+        vieb
         yq
         zip
       ]);
@@ -67,7 +68,7 @@ in
       };
       dircolors = enabled;
       direnv = enabled;
-      exa = {
+      eza = {
         enable = true;
         enableAliases = true;
         extraOptions = [
