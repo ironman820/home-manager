@@ -64,6 +64,10 @@
       ];
     };
 
+    homes.modules = with inputs; [
+      sops-nix.homeManagerModules.sops
+    ];
+
     overlays = with inputs; [
       flake.overlays.default
       blockyalarm.overlays."package/blockyalarm"
