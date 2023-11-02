@@ -1,6 +1,7 @@
 { config, format, home, host, inputs, lib, pkgs, systems, target, virtual, ...}:
 let
   inherit (lib.ironman) enabled;
+  email = config.sops.secrets.royell_email.path;
 in
 {
   home = {
@@ -10,6 +11,7 @@ in
     ];
   };
   ironman.home = {
+    sops.secrets.github.sopsFile = ./secrets/github_work.age;
     hyprland = {
         enable = true;
         wallpaper = ./voidbringer.png;
@@ -18,12 +20,14 @@ in
       enable = true;
       accounts = {
         royell = {
+          imap.host = "mail.royell.org";
+          primary = true;
         };
       };
     };
     networking = enabled;
+    sops.secrets.royell_email = {};
     suites.workstation = enabled;
-    user = enabled;
     work-tools = enabled;
   };
   # systemd.user = {

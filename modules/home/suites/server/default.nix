@@ -1,6 +1,7 @@
 { config, lib, pkgs, system, ... }:
 let
   inherit (lib) mkEnableOption mkIf;
+  inherit (lib.ironman) enabled;
   cfg = config.ironman.home.suites.server;
 in
 {
@@ -9,6 +10,13 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.file.".config/is_server".text = ''true'';
+    ironman.home = {
+      sops.secrets = {
+        github.sopsFile = ./secrets/github_servers.age;
+        royell_git.sopsFile = ./secrets/royell_git_servers.age;
+      };
+      lf = enabled;
+      tmux.shortcut = "t";
+    };
   };
 }

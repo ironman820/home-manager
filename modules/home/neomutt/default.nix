@@ -13,7 +13,7 @@ in {
   };
 
   config = mkIf cfg.enable {
-    accounts.email = cfg.accounts;
+    accounts.email = { inherit (cfg) accounts; };
     home.packages = with pkgs; [
       abook
       browsh

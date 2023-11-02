@@ -22,10 +22,10 @@ in {
         in {
         ".config/hypr/hyprland.conf".source = mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/modules/home/hyprland/hyprland-config/hyprland.conf";
         ".config/hypr/monitor.conf".text = concatStringsSep "\n" [
-          "monitor=HDMI-A-1,highrr,auto,1,mirror,eDP-1"
+          "monitor=HDMI-A-1,preferred,auto,1,mirror,eDP-1"
           "monitor=,highres,auto,${primaryScale}"
           "$mainMod = SUPER"
-          "bind = $mainMod, P, exec, hyprctl keyword monitor \"eDP-1,1280x720@60,auto,${primaryScale}\""
+          "bind = $mainMod, P, exec, hyprctl keyword monitor \"eDP-1,1280x720,auto,1\""
           "bind = $mainMod SHIFT, P, exec, hyprctl keyword monitor \"eDP-1,highres,auto,${primaryScale}\""
           "bindl = , switch:off:Lid Switch,exec,hyprctl keyword monitor \"eDP-1, highres, auto, ${primaryScale}\""
           "bindl = , switch:on:Lid Switch,exec,hyprctl keyword monitor \"eDP-1, disable\""

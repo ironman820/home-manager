@@ -12,7 +12,7 @@ let
 in
 {
   options.ironman.home.user = {
-    enable = mkBoolOpt false "Enable user's home manager";
+    enable = mkBoolOpt true "Enable user's home manager";
     email = mkOpt str "29488820+ironman820@users.noreply.github.com" "User email";
     fullName = mkOpt str "Nicholas Eastman" "Full Name";
     homeDirectory = mkOpt (nullOr str) home-directory "The user's home directory";
