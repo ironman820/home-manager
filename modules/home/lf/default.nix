@@ -10,8 +10,16 @@ in {
   };
 
   config = mkIf cfg.enable {
-    programs.lf = {
-      enable = true;
+    home.packages = (with pkgs; [
+      trashy
+    ]);
+    programs = {
+      lf = {
+        enable = true;
+        keybindings = {
+          DD = "%trash $f";
+        };
+      };
     };
   };
 }
