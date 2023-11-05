@@ -3,7 +3,7 @@ from libqtile.command import lazy
 
 
 browser: str = "brave"
-rofi:str = "rofi -show run -show-icons"
+rofi:str = "rofi -show drun -show-icons"
 terminal:str = "kitty"
 ranger = f"{terminal} bash -c ranger ~"
 mod:str = "mod4"
