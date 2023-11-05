@@ -14,7 +14,7 @@ in {
       (with pkgs; [
         ffmpeg
       ])
-      (mkIf (config.ironman.home.gnome.enable && cfg.handbrake) (
+      (mkIf cfg.handbrake (
         with pkgs; [
           handbrake
         ]

@@ -8,8 +8,9 @@ in
     enable = mkEnableOption "Enable the default settings?";
   };
 
-  config = mkIf (cfg.enable && config.ironman.home.gnome.enable) {
+  config = mkIf cfg.enable {
     home.packages = with pkgs; [
+      brave
       blender
       element-desktop-wayland
       firefox
