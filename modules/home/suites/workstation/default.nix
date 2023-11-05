@@ -11,9 +11,9 @@ in
 
   config = mkIf cfg.enable {
     ironman.home = {
-      gnome = enabled;
       gui-apps = enabled;
       lf = enabled;
+      qtile = enabled;
       sync = enabled;
       video-tools = enabled;
       virtual.host = enabled;

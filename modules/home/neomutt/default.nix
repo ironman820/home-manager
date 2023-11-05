@@ -38,16 +38,16 @@ in {
         format = "%B %*%<N?%N>";
       };
     };
-    systemd.user = {
-      services."mailsync" = {
-        Unit.Description = "Mail sync for Neomutt";
-        Install.WantedBy = [ "default.target" ];
-        Service.ExecStart = ''${pkgs.mutt-wizard}/bin/mailsync'';
-      };
-      timers."mailsync" = {
-        Install.WantedBy = [ "timers.target" ];
-        Timer.OnUnitInactiveSec = "5min";
-      };
-    };
+    # systemd.user = {
+    #   services."mailsync" = {
+    #     Unit.Description = "Mail sync for Neomutt";
+    #     Install.WantedBy = [ "default.target" ];
+    #     Service.ExecStart = ''${pkgs.mutt-wizard}/bin/mailsync'';
+    #   };
+    #   timers."mailsync" = {
+    #     Install.WantedBy = [ "timers.target" ];
+    #     Timer.OnUnitInactiveSec = "5min";
+    #   };
+    # };
   };
 }

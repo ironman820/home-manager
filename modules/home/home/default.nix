@@ -19,12 +19,7 @@ in
         inetutils
         jq
         neofetch
-        (nerdfonts.override {
-          fonts = [
-            "FiraCode"
-            "Inconsolata"
-          ];
-        })
+        nerdfonts
         nodejs_18
         poppler_utils
         pv
@@ -68,7 +63,7 @@ in
       };
       dircolors = enabled;
       direnv = enabled;
-      eza = {
+      exa = {
         enable = true;
         enableAliases = true;
         extraOptions = [

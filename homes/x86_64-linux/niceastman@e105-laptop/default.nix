@@ -12,10 +12,6 @@ in
   };
   ironman.home = {
     sops.secrets.github.sopsFile = ./secrets/github_work.age;
-    hyprland = {
-        enable = true;
-        wallpaper = ./voidbringer.png;
-    };
     neomutt = {
       enable = true;
       accounts = {
@@ -26,6 +22,7 @@ in
       };
     };
     networking = enabled;
+    programs.ranger = enabled;
     sops.secrets.royell_email = {};
     suites.workstation = enabled;
     work-tools = enabled;

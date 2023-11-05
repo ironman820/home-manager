@@ -87,7 +87,6 @@ in
       };
     };
     home.packages = (with pkgs; [
-      brave
       gnome.gnome-tweaks
       gnome-extension-manager
     ]) ++ (with pkgs.gnomeExtensions; [

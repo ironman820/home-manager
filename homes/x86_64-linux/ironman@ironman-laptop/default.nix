@@ -5,16 +5,10 @@ let
 in
 {
   ironman.home = {
-    hyprland = {
-      enable = true;
-      primaryScale = "0.8";
-      wallpaper = ./scream.jpg;
-    };
     networking = enabled;
     neomutt = enabled;
     personal-apps = enabled;
     suites.workstation = enabled;
-    user = enabled;
   };
   # systemd.user = {
   #   services = {
