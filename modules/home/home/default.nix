@@ -25,7 +25,6 @@ in
         pv
         restic
         ripgrep
-        vieb
         yq
         zip
       ]);

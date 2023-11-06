@@ -24,6 +24,18 @@
     nixpkgs-acc5f7b.url = "github:nixos/nixpkgs/acc5f7b";
     # ba45a55 - The last stable update of PHP 7.4
     nixpkgs-ba45a55.url = "github:nixos/nixpkgs/ba45a55";
+    nvim-cmp-nerdfont = {
+      flake = false;
+      url = "github:chrisgrieser/cmp-nerdfont";
+    };
+    nvim-undotree = {
+      flake = false;
+      url = "github:jiaoshijie/undotree";
+    };
+    ranger-devicons = {
+      flake = false;
+      url = "github:alexanderjeurissen/ranger_devicons";
+    };
     snowfall-lib = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:snowfallorg/lib";
