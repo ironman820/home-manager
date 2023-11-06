@@ -15,7 +15,6 @@ in
         github.sopsFile = ./secrets/github_servers.age;
         royell_git.sopsFile = ./secrets/royell_git_servers.age;
       };
-      lf = enabled;
       tmux.shortcut = "t";
     };
   };
