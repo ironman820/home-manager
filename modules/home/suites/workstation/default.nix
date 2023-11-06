@@ -12,7 +12,6 @@ in
   config = mkIf cfg.enable {
     ironman.home = {
       gui-apps = enabled;
-      lf = enabled;
       qtile = enabled;
       sync = enabled;
       video-tools = enabled;
