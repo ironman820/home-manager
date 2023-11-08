@@ -22,7 +22,10 @@ in
       };
     };
     networking = enabled;
-    programs.ranger = enabled;
+    programs = {
+      nvim.enableLSP = true;
+      ranger = enabled;
+    };
     sops.secrets.royell_email = {};
     suites.workstation = enabled;
     work-tools = enabled;

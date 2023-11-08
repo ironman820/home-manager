@@ -234,6 +234,23 @@
         "type": "github"
       }
     },
+    "lsp-zero-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1698863385,
+        "narHash": "sha256-W0VKNaHowYYj4+SubThbZVhwyAhJvjTYI4OKYrURc1Q=",
+        "owner": "VonHeikemen",
+        "repo": "lsp-zero.nvim",
+        "rev": "bb874e8d832b66fa734b7b048d52eb9ed736bdcf",
+        "type": "github"
+      },
+      "original": {
+        "owner": "VonHeikemen",
+        "ref": "v3.x",
+        "repo": "lsp-zero.nvim",
+        "type": "github"
+      }
+    },
     "nix-ld": {
       "inputs": {
         "nixpkgs": [
@@ -333,16 +350,51 @@
         "type": "github"
       }
     },
+    "nvim-cmp-nerdfont": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1679945910,
+        "narHash": "sha256-NoAmim45YuISqkIW4w93DOfuG0kStBEQH2eSPw78b6M=",
+        "owner": "chrisgrieser",
+        "repo": "cmp-nerdfont",
+        "rev": "853a946eda00016f60c0602a20d8595c6eb074a6",
+        "type": "github"
+      },
+      "original": {
+        "owner": "chrisgrieser",
+        "repo": "cmp-nerdfont",
+        "type": "github"
+      }
+    },
+    "nvim-undotree": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1699099021,
+        "narHash": "sha256-Ed+0I9I6cFfsN7nklwAMOiO/WwVpJP8m20W6ZCdc4tg=",
+        "owner": "jiaoshijie",
+        "repo": "undotree",
+        "rev": "a88c8ab7f780bc14ab9356c2311c44f49213d47c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "jiaoshijie",
+        "repo": "undotree",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "blockyalarm": "blockyalarm",
         "flake": "flake",
         "home-manager": "home-manager",
+        "lsp-zero-nvim": "lsp-zero-nvim",
         "nix-ld": "nix-ld",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "nixpkgs-acc5f7b": "nixpkgs-acc5f7b",
         "nixpkgs-ba45a55": "nixpkgs-ba45a55",
+        "nvim-cmp-nerdfont": "nvim-cmp-nerdfont",
+        "nvim-undotree": "nvim-undotree",
         "snowfall-lib": "snowfall-lib_3",
         "sops-nix": "sops-nix",
         "tmux-session-wizard": "tmux-session-wizard",
