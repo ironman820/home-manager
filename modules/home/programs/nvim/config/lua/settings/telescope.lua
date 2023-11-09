@@ -15,6 +15,9 @@ telescope.setup({
     buffers = {
       theme = "dropdown",
     },
+    builtin = {
+      theme = "dropdown",
+    },
     commands = {
       theme = "dropdown",
     },
@@ -27,12 +30,9 @@ telescope.setup({
     find_files = {
       theme = "dropdown",
     },
-    man_pages = {
-      theme = "dropdown",
-    },
   }
 })
-require('telescope').load_extension('fzf')
+telescope.load_extension('fzf')
 
 local builtin = require('telescope.builtin')
 
@@ -41,6 +41,6 @@ vim.keymap.set('n', '<leader>fc', builtin.commands, {})
 vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>fm', builtin.man_pages, {})
+vim.keymap.set('n', '<leader>fp', builtin.builtin, {})
 vim.keymap.set('n', '<leader>fr', builtin.oldfiles, {})
 
