@@ -43,6 +43,12 @@ screens = [
                 widget.WindowName(),
                 widget.CurrentLayout(),
                 widget.Systray(),
+                PulseVolume(
+                    emoji=True,
+                    emoji_list=['󰝟','󰕿','󰖀','󰕾'],
+                    limit_max_volume=True,
+                    step=5,
+                ),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
                 Wallpaper(directory="~/wallpapers", max_chars=0,fmt='',random_selection=True),
             ],
