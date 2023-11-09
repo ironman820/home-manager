@@ -35,9 +35,48 @@ in {
         fd
         ripgrep
         tree-sitter
+        pyright
+        (python3.withPackages (py: with py; [
+          python-lsp-server
+          pyright
+        ]))
       ];
-      plugins = with pkgs.vimPlugins; [
-        nvim-treesitter.withAllGrammars
+      plugins = (with pkgs.vimPlugins; [
+        cmp-cmdline
+        cmp-buffer
+        cmp-nvim-lsp
+        cmp-nvim-ultisnips
+        cmp-path
+        cmp-rg
+        dressing-nvim
+        {
+          plugin = nvim-autopairs;
+          type = "lua";
+          config = ''
+            require("nvim-autopairs").setup()
+          '';
+        }
+        {
+          plugin = nvim-cmp;
+          type = "lua";
+          config = ''
+            require "settings.cmp"
+          '';
+        }
+        {
+          plugin = nvim-lspconfig;
+          type = "lua";
+          config = ''
+            require "settings.lspconfig"
+          '';
+        }
+        {
+          plugin = nvim-treesitter.withAllGrammars;
+          type = "lua";
+          config = ''
+            require "settings.treesitter"
+          '';
+        }
         nvim-web-devicons
         plenary-nvim
         telescope-fzf-native-nvim
@@ -54,7 +93,10 @@ in {
             colorscheme tokyonight-night
           '';
         }
-      ];
+        ultisnips
+      ]) ++ (with pkgs.ironman; [
+        cmp-nerdfont
+      ]);
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
