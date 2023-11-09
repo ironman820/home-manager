@@ -1,5 +1,6 @@
 from libqtile.config import Group, Key
 from libqtile.command import lazy
+from libqtile.extension import CommandSet
 from .keys import keys, mod
 
 _groups: dict = {
@@ -11,6 +12,14 @@ for ws in range(3,10):
     _groups.update({
         ws: Group(str(ws)),
     })
+
+# projector_command = CommandSet(
+#     commands={
+#         "Single Display": '''
+#             xrandr | grep -v -e "^ " | tail -1
+#         '''
+#     }
+# )
 
 groups: list[Group] = [_groups[group] for group in _groups]
 

@@ -9,9 +9,9 @@ ranger = f"{terminal} bash -c ranger ~"
 mod:str = "mod4"
 
 keys = [
-    Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -5%")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +5%")),
+    Key([], "XF86AudioMute", lazy.widget["pulsevolume"].mute()),
+    Key([], "XF86AudioLowerVolume", lazy.widget["pulsevolume"].decrease_vol()),
+    Key([], "XF86AudioRaiseVolume", lazy.widget["pulsevolume"].increase_vol()),
     Key([mod], "f", lazy.spawn(ranger), desc="Move focus to left"),
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
