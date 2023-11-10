@@ -2,6 +2,11 @@ local cmp = require'cmp'
 
 cmp.setup({
   enabled = function()
+    -- disable completion in prompts like Telescope
+    if vim.bo.buftype == 'prompt' then
+      return false
+    end
+
     -- disable completion in comments
     local context = require 'cmp.config.context'
     -- keep command mode completion enabled when cursor is in a comment
@@ -35,7 +40,6 @@ cmp.setup({
     { name = 'nvim_lsp' },
     { name = 'ultisnips' }, -- For ultisnips users.
     { name = 'nerdfont' },
-  }, {
     { name = 'buffer' },
     { name = 'rg' },
   })
@@ -68,9 +72,3 @@ cmp.setup.cmdline(':', {
   })
 })
 
--- Set up lspconfig.
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
--- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
---   capabilities = capabilities
--- }

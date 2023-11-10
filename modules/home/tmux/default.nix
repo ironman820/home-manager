@@ -1,8 +1,8 @@
-{ config, inputs, lib, options, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   inherit (lib) mkIf;
-  inherit (lib.ironman) enabled mkBoolOpt mkOpt;
-  inherit (lib.types) either int lines listOf package str submodule;
+  inherit (lib.ironman) mkBoolOpt mkOpt;
+  inherit (lib.types) int lines str;
   inherit (pkgs.tmuxPlugins) onedark-theme sensible yank;
 
   cfg = config.ironman.home.tmux;
