@@ -21,7 +21,7 @@ in
         "diff" = "batdiff";
         "man" = mkIf cfg.batman "batman";
         "rg" = "batgrep";
-        "watch" = "batwatch";
+        "watch" = "batwatch --command";
       };
     };
     programs = {
