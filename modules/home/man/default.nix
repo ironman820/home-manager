@@ -6,7 +6,7 @@ let
   cfg = config.ironman.home.man;
 in {
   options.ironman.home.man = {
-    enable = mkBoolOpt false "Install new man pager.";
+    enable = mkBoolOpt true "Install new man pager.";
   };
 
   config = mkIf cfg.enable {
@@ -15,9 +15,6 @@ in {
       packages = with pkgs; [
         tealdeer
       ];
-      shellAliases = {
-        "man" = "tldr";
-      };
     };
   };
 }
