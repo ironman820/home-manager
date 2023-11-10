@@ -234,23 +234,6 @@
         "type": "github"
       }
     },
-    "lsp-zero-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1698863385,
-        "narHash": "sha256-W0VKNaHowYYj4+SubThbZVhwyAhJvjTYI4OKYrURc1Q=",
-        "owner": "VonHeikemen",
-        "repo": "lsp-zero.nvim",
-        "rev": "bb874e8d832b66fa734b7b048d52eb9ed736bdcf",
-        "type": "github"
-      },
-      "original": {
-        "owner": "VonHeikemen",
-        "ref": "v3.x",
-        "repo": "lsp-zero.nvim",
-        "type": "github"
-      }
-    },
     "nix-ld": {
       "inputs": {
         "nixpkgs": [
@@ -403,7 +386,6 @@
         "blockyalarm": "blockyalarm",
         "flake": "flake",
         "home-manager": "home-manager",
-        "lsp-zero-nvim": "lsp-zero-nvim",
         "nix-ld": "nix-ld",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",

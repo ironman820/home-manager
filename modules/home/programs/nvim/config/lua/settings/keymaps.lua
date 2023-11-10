@@ -5,6 +5,8 @@ local term_opts = { silent = true }
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
+keymap("", "q", "<Nop>", opts)
+
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
@@ -41,7 +43,7 @@ keymap("n", "<c-right>", ":vertical resize -2<cr>", opts)
 keymap("n", "<c-left>", ":vertical resize +2<cr>", opts)
 
 -- navigate buffers
-keymap("n", "<tab>", "<cmd>bnext<cr>", opts) -- Next Tab
+keymap("n", "<Tab>", "<cmd>bnext<cr>", opts) -- Next Tab
 keymap("n", "<s-tab>", "<cmd>bprevious<cr>", opts) -- Previous tab
 
 -- move text up and down
