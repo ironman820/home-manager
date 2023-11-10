@@ -174,6 +174,8 @@ in {
           '';
         }
         ultisnips
+        vim-highlightedyank
+        vim-illuminate
         {
           plugin = which-key-nvim;
           type = "lua";

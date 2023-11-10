@@ -20,21 +20,9 @@ vim.g.maplocalleader = " "
 --   term_mode = "t",
 --   command_mode = "c",
 
-    -- Normal --
--- Copy to global clipboard
-opts.desc = "[Y]ank to Clipboard"
-keymap("n", "<leader>y", "\"+y", opts)
-keymap("v", "<leader>y", "\"+y", opts)
-
 -- Overwrite no copy
 opts.desc = "[P]aste without copying."
 keymap("x", "<leader>p", "\"_dP", opts)
-
--- Delete no copy
-opts.desc = "[D]elete without copying"
-keymap("n", "<leader>d", "\"_d", opts)
-keymap("v", "<leader>d", "\"_d", opts)
-opts.desc = nil
 
 -- Resize with arrows when using multiple windows
 keymap("n", "<C-Up>", ":resize -2<CR>", opts)
@@ -71,10 +59,4 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
-
---Better terminal navigation
-keymap("t", "<C-h>", "<C-\\><C-N><C-w>h", term_opts)
-keymap("t", "<C-j>", "<C-\\><C-N><C-w>j", term_opts)
-keymap("t", "<C-k>", "<C-\\><C-N><C-w>k", term_opts)
-keymap("t", "<C-l>", "<C-\\><C-N><C-w>l", term_opts)
 
