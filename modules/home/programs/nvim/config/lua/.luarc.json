@@ -1,0 +1,11 @@
+{
+    "diagnostics.globals": [
+        "vim"
+    ],
+    "workspace.library": [
+        "/nix/store/lfa9qsncyihfvdgmggld4dcrd40xzmpp-vimplugin-neodev.nvim-2023-05-22/types/stable",
+        "/nix/store/j9wxx953zyf6i67xmxrwm0358djbx8dz-neovim-unwrapped-0.9.1/share/nvim/runtime/lua",
+        "/home/ironman/.config/home-manager/modules/home/programs/nvim/config/lua",
+        "${3rd}/luv/library"
+    ]
+}

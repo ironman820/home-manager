@@ -35,20 +35,18 @@ telescope.setup({
     live_grep = {
       theme = "dropdown",
     },
-    find_files = {
-      theme = "dropdown",
-    },
   }
 })
 telescope.load_extension('fzf')
 
--- local builtin = require('telescope.builtin')
+local builtin = require('telescope.builtin')
 
--- vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
--- vim.keymap.set('n', '<leader>fc', builtin.commands, {})
--- vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
--- vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
--- vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
--- vim.keymap.set('n', '<leader>fp', builtin.builtin, {})
--- vim.keymap.set('n', '<leader>fr', builtin.oldfiles, {})
+vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "[B]uffers" })
+vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = "[C]ommands" })
+vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "[F]iles" })
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "[G]rep" })
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "[H]elp" })
+vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = "[K]eymaps" })
+vim.keymap.set('n', '<leader>fp', builtin.builtin, { desc = "[P]ickers" })
+vim.keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = "[R]ecent files" })
 
