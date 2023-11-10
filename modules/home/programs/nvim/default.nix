@@ -42,18 +42,68 @@ in {
         ]))
       ];
       plugins = (with pkgs.vimPlugins; [
+        {
+          plugin = bufferline-nvim;
+          type = "lua";
+          config = ''
+            require "settings.bufferline"
+          '';
+        }
         cmp-cmdline
         cmp-buffer
+        cmp-nerdfont
         cmp-nvim-lsp
         cmp-nvim-ultisnips
         cmp-path
         cmp-rg
+        {
+          plugin = comment-nvim;
+          type = "lua";
+          config = ''
+            require('Comment').setup()
+          '';
+        }
         dressing-nvim
+        {
+          plugin = gitsigns-nvim;
+          type = "lua";
+          config = ''
+            require "settings.git"
+          '';
+        }
+        {
+          plugin = hop-nvim;
+          type = "lua";
+          config = ''
+            require "settings.hop"
+          '';
+        }
+        {
+          plugin = indent-blankline-nvim;
+          type = "lua";
+          config = ''
+            require "settings.indent-blankline"
+          '';
+        }
+        {
+          plugin = lualine-nvim;
+          type = "lua";
+          config = ''
+            require "settings.lualine"
+          '';
+        }
+        {
+          plugin = mini-nvim;
+          type = "lua";
+          config = ''
+            require("mini.animate").setup()
+          '';
+        }
         {
           plugin = nvim-autopairs;
           type = "lua";
           config = ''
-            require("nvim-autopairs").setup()
+            require "settings.autopairs"
           '';
         }
         {
@@ -71,13 +121,43 @@ in {
           '';
         }
         {
+          plugin = nvim-surround;
+          type = "lua";
+          config = ''
+            require("nvim-surround").setup()
+          '';
+        }
+        {
+          plugin = nvim-tree-lua;
+          type = "lua";
+          config = ''
+            require "settings.nvim-tree"
+          '';
+        }
+        {
           plugin = nvim-treesitter.withAllGrammars;
           type = "lua";
           config = ''
             require "settings.treesitter"
           '';
         }
+        nvim-ts-rainbow2
+        {
+          plugin = nvim-undotree;
+          type = "lua";
+          config = ''
+            require "settings.undotree"
+          '';
+        }
         nvim-web-devicons
+        {
+          plugin = oil-nvim;
+          type = "lua";
+          config = ''
+            require('oil').setup()
+            vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+          '';
+        }
         plenary-nvim
         telescope-fzf-native-nvim
         {
@@ -94,8 +174,13 @@ in {
           '';
         }
         ultisnips
-      ]) ++ (with pkgs.ironman; [
-        cmp-nerdfont
+        {
+          plugin = which-key-nvim;
+          type = "lua";
+          config = ''
+            require "settings.which-key"
+          '';
+        }
       ]);
       viAlias = true;
       vimAlias = true;

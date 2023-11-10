@@ -14,10 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:nix-community/home-manager/release-23.05";
     };
-    lsp-zero-nvim = {
-      flake = false;
-      url = "github:VonHeikemen/lsp-zero.nvim/v3.x";
-    };
     nix-ld = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:mic92/nix-ld";
