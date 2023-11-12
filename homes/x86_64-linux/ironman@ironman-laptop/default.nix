@@ -8,6 +8,12 @@ in
     networking = enabled;
     neomutt = enabled;
     personal-apps = enabled;
+    programs.ranger = enabled;
+    qtile = {
+      enable = true;
+      backlightDisplay = "intel_backlight";
+      screenSizeCommand = "xrandr --output eDP-1 --primary --auto --scale 1.2";
+    };
     suites.workstation = enabled;
   };
   # systemd.user = {

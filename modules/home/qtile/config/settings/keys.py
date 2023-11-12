@@ -12,6 +12,8 @@ keys = [
     Key([], "XF86AudioMute", lazy.widget["pulsevolume"].mute()),
     Key([], "XF86AudioLowerVolume", lazy.widget["pulsevolume"].decrease_vol()),
     Key([], "XF86AudioRaiseVolume", lazy.widget["pulsevolume"].increase_vol()),
+    Key([], "XF86MonBrightnessDown", lazy.widget["backlight"].change_backlight('down')),
+    Key([], "XF86MonBrightnessUp", lazy.widget["backlight"].change_backlight('up')),
     Key([mod], "f", lazy.spawn(ranger), desc="Move focus to left"),
     Key([mod], "h", lazy.layout.left(), desc="Move focus to left"),
     Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),

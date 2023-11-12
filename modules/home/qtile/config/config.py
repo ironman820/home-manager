@@ -1,13 +1,22 @@
+import os
+import subprocess
+from libqtile import hook
 from libqtile import bar, widget
 from libqtile.config import Click, Drag, Match, Screen
 from libqtile.layout.columns import Columns
 from libqtile.layout.floating import Floating
 from libqtile.layout.max import Max
 from libqtile.lazy import lazy
-from libqtile.widget import GroupBox, PulseVolume, Wallpaper
+from libqtile.widget import Backlight, Battery, BatteryIcon, GroupBox, PulseVolume, Wallpaper
 
+from display import watch_display
 from settings.keys import keys, mod
 from settings.groups import groups
+
+@hook.subscribe.startup_once
+def autostart():
+    home = os.path.expanduser('~/.config/qtile/autostart.sh')
+    subprocess.Popen([home])
 
 layouts = [
     Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
@@ -43,16 +52,23 @@ screens = [
                 widget.WindowName(),
                 widget.CurrentLayout(),
                 widget.Systray(),
+                Backlight(
+                    fmt=" {}",
+                    backlight_name=watch_display,
+                ),
                 PulseVolume(
                     emoji=True,
                     emoji_list=['󰝟','󰕿','󰖀','󰕾'],
                     limit_max_volume=True,
                     step=5,
                 ),
+                BatteryIcon(),
+                Battery(format='{percent:2.0%}'),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-                Wallpaper(directory="~/wallpapers", max_chars=0,fmt='',random_selection=True),
             ],
             30,
+            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
+            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
     ),
 ]
