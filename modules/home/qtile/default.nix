@@ -1,9 +1,9 @@
-{ config, inputs, lib, options, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit (lib) mkEnableOption mkIf;
   inherit (lib.types) str;
-  inherit (lib.ironman) enabled mkOpt;
+  inherit (lib.ironman) mkOpt;
   inherit (pkgs) writeShellScript;
 
   cfg = config.ironman.home.qtile;
