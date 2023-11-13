@@ -1,0 +1,3 @@
+# vim: filetype=neomuttrc
+macro index,pager Mv ";<save-message>" "Move messages to specified folder"
+macro index,pager Cp ";<copy-message>" "Copy messages to specified folder"

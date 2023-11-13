@@ -1,14 +1,18 @@
-{ config, format, home, host, inputs, lib, pkgs, systems, target, virtual, ...}:
+{ lib, pkgs, ...}:
 let
   inherit (lib.ironman) enabled;
-  inherit (pkgs.ironman) blockyalarm;
 in
 {
   ironman.home = {
     networking = enabled;
-    neomutt = enabled;
     personal-apps = enabled;
-    programs.ranger = enabled;
+    programs = {
+      neomutt = {
+        enable = true;
+        personalEmail = true;
+      };
+      ranger = enabled;
+    };
     qtile = {
       enable = true;
       backlightDisplay = "intel_backlight";
