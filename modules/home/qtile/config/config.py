@@ -75,7 +75,10 @@ screens = [
                 Battery(format="{percent:2.0%}"),
                 widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
                 Wallpaper(
-                    directory="~/wallpapers", max_chars=0, fmt="", random_selection=True
+                    directory="~/wallpapers",
+                    max_chars=0,
+                    fmt="",
+                    random_selection=True,
                 ),
             ],
             30,
