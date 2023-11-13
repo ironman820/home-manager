@@ -1,32 +1,18 @@
-{ config, format, home, host, inputs, lib, pkgs, systems, target, virtual, ...}:
+{ lib, pkgs, ... }:
 let
   inherit (lib.ironman) enabled;
-  email = config.sops.secrets.royell_email.path;
-in
-{
+in {
   home = {
-    file.".config/is_personal".text = ''false'';
-    packages = [
-        pkgs.ironman.blockyalarm
-    ];
+    file.".config/is_personal".text = "false";
+    packages = [ pkgs.ironman.blockyalarm ];
   };
   ironman.home = {
     sops.secrets.github.sopsFile = ./secrets/github_work.age;
-    neomutt = {
-      enable = true;
-      accounts = {
-        royell = {
-          imap.host = "mail.royell.org";
-          primary = true;
-        };
-      };
-    };
     networking = enabled;
     programs = {
-      nvim.enableLSP = true;
+      neomutt = enabled;
       ranger = enabled;
     };
-    sops.secrets.royell_email = {};
     suites.workstation = enabled;
     work-tools = enabled;
   };
