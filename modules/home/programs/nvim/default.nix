@@ -13,6 +13,9 @@ let
   '';
   modFolder = "${config.home.homeDirectory}/.config/home-manager/modules/home/programs/nvim";
 in {
+  imports = [
+    ./ufo.nix
+  ];
   options.ironman.home.programs.nvim = {
     enable = mkBoolOpt true "Install NeoVim";
     enableLSP = mkBoolOpt false "Install LSP tools";
@@ -24,6 +27,7 @@ in {
     ironman.home.programs.nvim = mkIf cfg.qtile { enableLSP = true; };
     home = {
       file = {
+        ".config/nvim/lua/.luarc.json".source = mkOutOfStoreSymlink "${modFolder}/config/lua/.luarc.conf";
         ".config/nvim/lua/settings".source = mkOutOfStoreSymlink
           "${modFolder}/config/lua/settings";
       };
@@ -146,6 +150,13 @@ in {
               require "settings.undotree"
             '';
           }
+          {
+            plugin = nvim-ufo;
+            type = "lua";
+            config = ''
+              -- require "settings.ufo"
+            '';
+          }
           nvim-web-devicons
           {
             plugin = oil-nvim;
@@ -156,6 +167,7 @@ in {
             '';
           }
           plenary-nvim
+          promise-async
           repeat
           telescope-fzf-native-nvim
           {
