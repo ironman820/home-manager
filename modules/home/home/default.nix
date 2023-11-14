@@ -1,4 +1,4 @@
-{ options, pkgs, config, lib, inputs, ... }:
+{ pkgs, lib, ... }:
 let
   inherit (lib) mkDefault;
   inherit (lib.ironman) enabled;
@@ -10,7 +10,7 @@ in
         ".config/is_personal".text = mkDefault ''true'';
         ".config/is_server".text = mkDefault ''false'';
       };
-      packages = (with pkgs; [
+      packages = with pkgs; [
         chezmoi
         dig
         duf
@@ -23,11 +23,13 @@ in
         nodejs_18
         poppler_utils
         pv
+        qrencode
         restic
         ripgrep
+        unzip
         yq
         zip
-      ]);
+      ];
       sessionPath = [
         "$HOME/bin"
         "$HOME/.local/bin"
