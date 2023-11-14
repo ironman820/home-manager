@@ -71,17 +71,17 @@ in {
             '';
           }
           {
+            plugin = hop-nvim;
+            type = "lua";
+            config = ''
+              require "settings.hop"
+            '';
+          }
+          {
             plugin = indent-blankline-nvim;
             type = "lua";
             config = ''
               require "settings.indent-blankline"
-            '';
-          }
-          {
-            plugin = leap-nvim;
-            type = "lua";
-            config = ''
-              require("leap").add_default_mappings()
             '';
           }
           {
@@ -167,8 +167,6 @@ in {
             '';
           }
           plenary-nvim
-          promise-async
-          repeat
           telescope-fzf-native-nvim
           {
             plugin = telescope-nvim;
