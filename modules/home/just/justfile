@@ -15,6 +15,7 @@ switch:
 
 home-switch:
   home-manager switch
+  systemctl --user restart sops-nix.service
 
 update:
   #!/usr/bin/env bash
@@ -24,5 +25,6 @@ update:
   cd ~/.config/home-manager
   flake update
   home-manager switch
+  systemctl --user restart sops-nix.service
   flatpak update -y
 
