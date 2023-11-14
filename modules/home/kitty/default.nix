@@ -1,9 +1,9 @@
-{ config, inputs, lib, options, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit (lib) mkDefault mkForce mkIf;
-  inherit (lib.ironman) enabled mkBoolOpt mkOpt;
-  inherit (lib.types) attrs int lines;
+  inherit (lib.ironman) mkBoolOpt mkOpt;
+  inherit (lib.types) attrs lines;
   inherit (pkgs) nerdfonts;
 
   cfg = config.ironman.home.kitty;
@@ -15,8 +15,10 @@ in {
       background_opacity = mkForce "0.9";
       cursor_shape = mkDefault "beam";
       enable_audio_bell = mkDefault false;
+      font_family = mkDefault "FiraCode Nerd Font Mono";
       scrollback_lines = mkDefault 10000;
       scrollback_pager = mkDefault "bat";
+      tab_bar_style = mkDefault "powerline";
       update_check_interval = mkDefault 0;
     } "Settings from the kitty config file";
   };
