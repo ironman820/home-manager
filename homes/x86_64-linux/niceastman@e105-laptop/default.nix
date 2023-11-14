@@ -10,7 +10,10 @@ in {
     sops.secrets.github.sopsFile = ./secrets/github_work.age;
     networking = enabled;
     programs = {
-      neomutt = enabled;
+      neomutt = {
+        enable = true;
+        workEmail = true;
+      };
       ranger = enabled;
     };
     suites.workstation = enabled;
