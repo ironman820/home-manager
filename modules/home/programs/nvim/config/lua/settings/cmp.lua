@@ -41,7 +41,7 @@ cmp.setup({
     { name = 'ultisnips' }, -- For ultisnips users.
     { name = 'nerdfont' },
     { name = 'buffer' },
-    { name = 'rg' },
+    -- { name = 'rg' },
   })
 })
 
