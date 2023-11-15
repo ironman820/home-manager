@@ -40,7 +40,7 @@ in {
       {
         inherit (cfg) enable extraLuaConfig;
         defaultEditor = true;
-        extraPackages = with pkgs; [ fd ripgrep tree-sitter ];
+        extraPackages = with pkgs; [ fd ripgrep tree-sitter xclip ];
         plugins = with pkgs.vimPlugins; [
           {
             plugin = bufferline-nvim;
