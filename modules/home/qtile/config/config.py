@@ -1,11 +1,8 @@
 import os
 import subprocess
 from libqtile import hook
-from libqtile import bar, widget
+from libqtile import bar, widget, layout
 from libqtile.config import Click, Drag, Match, Screen
-from libqtile.layout.columns import Columns
-from libqtile.layout.floating import Floating
-from libqtile.layout.max import Max
 from libqtile.lazy import lazy
 from libqtile.widget import (
     Backlight,
@@ -28,14 +25,14 @@ def autostart():
 
 
 layouts = [
-    Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
-    Max(),
+    layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
+    layout.Max(),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
     # layout.Matrix(),
     # layout.MonadTall(),
-    # layout.MonadWide(),
+    layout.MonadWide(),
     # layout.RatioTile(),
     # layout.Tile(),
     # layout.TreeTab(),
@@ -82,8 +79,6 @@ screens = [
                 ),
             ],
             30,
-            # border_width=[2, 0, 2, 0],  # Draw top and bottom borders
-            # border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
         ),
     ),
 ]
@@ -107,11 +102,11 @@ dgroups_app_rules = []  # type: list
 follow_mouse_focus = False
 bring_front_click = False
 cursor_warp = False
-floating_layout = Floating(
+floating_layout = layout.Floating(
     float_rules=[
         # Run the utility of `xprop` to see
         # the wm class and name of an X client.
-        *Floating.default_float_rules,
+        *layout.Floating.default_float_rules,
         Match(wm_class="confirmreset"),  # gitk
         Match(wm_class="makebranch"),  # gitk
         Match(wm_class="maketag"),  # gitk
