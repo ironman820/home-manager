@@ -27,7 +27,12 @@ in {
     ironman.home.kitty.extraConfig = ''
       include current-theme.conf
     '';
-    home.file.".config/kitty/current-theme.conf".source = mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/modules/home/kitty/theme.conf";
+    home = {
+      file.".config/kitty/current-theme.conf".source = mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/modules/home/kitty/theme.conf";
+      packages = [
+        nerdfonts
+      ];
+    };
     programs.kitty = {
       inherit (cfg) extraConfig settings;
       enable = true;
