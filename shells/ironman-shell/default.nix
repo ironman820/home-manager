@@ -1,9 +1,18 @@
-{ lib, inputs, pkgs, stdenv, ... }:
+{ pkgs, stdenv, ... }:
+  let
+    myPythonPackages = py:
+      with py; [
+        black
+        flake8
+        qtile
+      ];
+  in
 stdenv.mkDerivation {
   name = "ironman-shell";
   nativeBuildInputs = with pkgs; [
     nix-index
     nix-tree
+    (python3.withPackages myPythonPackages)
   ];
 
   # shellHook = ''

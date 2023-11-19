@@ -7,7 +7,7 @@ self: super: let
   inherit (super.python310Packages) buildPythonPackage six;
 in {
   python310Packages = super.python310Packages // {
-    "tendo" = buildPythonPackage rec {
+    "tendo" = buildPythonPackage {
       pname = "tendo";
       version = "0.3.0";
       src = fetchurl {

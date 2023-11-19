@@ -16,7 +16,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    ironman.home.programs.nvim.qtile = true;
     home.packages = with pkgs; [
       flameshot
     ];

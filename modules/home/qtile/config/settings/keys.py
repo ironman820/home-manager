@@ -1,6 +1,5 @@
-from libqtile.config import Key
+from libqtile.config import Key, KeyChord
 from libqtile.command import lazy
-
 
 browser: str = "brave"
 rofi: str = "rofi -show drun -show-icons"
@@ -9,6 +8,11 @@ ranger = f"{terminal} bash -c ranger ~"
 mod: str = "mod4"
 
 keys = [
+    KeyChord([mod], "p", [
+        Key([], "e", lazy.spawn("xrandr --output DP-1 --primary --auto --output eDP-1 --off")),
+        Key([], "p", lazy.spawn("xrandr --output eDP-1 --primary --auto --output DP-1 --off --output HDMI-1 --off")),
+        Key(["shift"], "p", lazy.spawn("xrandr --output eDP-1 --primary --auto --output DP-1 --off")),
+    ]),
     Key([], "Print", lazy.spawn("flameshot launcher")),
     Key([], "XF86AudioMute", lazy.widget["pulsevolume"].mute()),
     Key([], "XF86AudioLowerVolume", lazy.widget["pulsevolume"].decrease_vol()),
