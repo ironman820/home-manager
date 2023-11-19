@@ -17,6 +17,9 @@ in {
 
   config = mkIf cfg.enable {
     ironman.home.programs.nvim.qtile = true;
+    home.packages = with pkgs; [
+      flameshot
+    ];
     xdg.configFile."qtile/autostart.sh".source =
       writeShellScript "autostart.sh" ''
         ${cfg.screenSizeCommand}

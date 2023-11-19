@@ -25,9 +25,9 @@ in
       };
     };
     programs = {
-      bash.bashrcExtra = ''
+      /* bash.bashrcExtra = ''
         eval $(${pkgs.bat-extras.batpipe}/bin/batpipe)
-      '';
+      ''; */
       bat = {
         config.theme = "TwoDark";
         enable = true;
