@@ -9,6 +9,7 @@ ranger = f"{terminal} bash -c ranger ~"
 mod: str = "mod4"
 
 keys = [
+    Key([], "Print", lazy.spawn("flameshot launcher")),
     Key([], "XF86AudioMute", lazy.widget["pulsevolume"].mute()),
     Key([], "XF86AudioLowerVolume", lazy.widget["pulsevolume"].decrease_vol()),
     Key([], "XF86AudioRaiseVolume", lazy.widget["pulsevolume"].increase_vol()),

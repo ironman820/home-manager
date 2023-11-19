@@ -12,14 +12,15 @@
     };
     home-manager = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager";
     };
     nix-ld = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:mic92/nix-ld";
     };
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:nixos/nixpkgs";
+    nixpkgs-23-05.url = "github:nixos/nixpkgs/nixos-23.05";
     # acc5f7b - IcedTea v8 Stable
     nixpkgs-acc5f7b.url = "github:nixos/nixpkgs/acc5f7b";
     # ba45a55 - The last stable update of PHP 7.4
@@ -48,41 +49,35 @@
       flake = false;
       url = "github:27medkamal/tmux-session-wizard";
     };
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
   };
 
-  outputs = inputs: let
-    lib = inputs.snowfall-lib.mkLib {
-      inherit inputs;
-      src = ./.;
+  outputs = inputs:
+    let
+      lib = inputs.snowfall-lib.mkLib {
+        inherit inputs;
+        src = ./.;
 
-      snowfall = {
-        meta = {
-          name = "ironman";
-          title = "Ironman Home Config";
+        snowfall = {
+          meta = {
+            name = "ironman";
+            title = "Ironman Home Config";
+          };
+          namespace = "ironman";
         };
-        namespace = "ironman";
       };
-    };
-  in lib.mkFlake {
-    channels-config = {
-      allowUnfree = true;
-      permittedInsecurePackages = [
-        "openssl-1.1.1w"
+    in lib.mkFlake {
+      channels-config = {
+        allowUnfree = true;
+        permittedInsecurePackages = [ "openssl-1.1.1w" ];
+      };
+
+      homes.modules = with inputs; [ sops-nix.homeManagerModules.sops ];
+
+      overlays = with inputs; [
+        flake.overlays.default
+        blockyalarm.overlays."package/blockyalarm"
       ];
+
+      alias = { shells.default = "ironman-shell"; packages.default = "t"; };
     };
-
-    homes.modules = with inputs; [
-      sops-nix.homeManagerModules.sops
-    ];
-
-    overlays = with inputs; [
-      flake.overlays.default
-      blockyalarm.overlays."package/blockyalarm"
-    ];
-
-    alias = {
-      shells.default = "ironman-shell";
-    };
-  };
 }
