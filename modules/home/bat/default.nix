@@ -1,7 +1,7 @@
-{ options, pkgs, config, lib, inputs, ... }:
+{ pkgs, config, lib, inputs, ... }:
 let
   inherit (lib) mkIf;
-  inherit (lib.ironman) enabled mkBoolOpt;
+  inherit (lib.ironman) mkBoolOpt;
   cfg = config.ironman.home.bat;
 in
 {
@@ -25,11 +25,11 @@ in
       };
     };
     programs = {
-      /* bash.bashrcExtra = ''
+      bash.bashrcExtra = ''
         eval $(${pkgs.bat-extras.batpipe}/bin/batpipe)
-      ''; */
+      '';
       bat = {
-        config.theme = "TwoDark";
+        config.theme = "Catppuccin-mocha";
         enable = true;
         extraPackages = with pkgs.bat-extras; [
           batdiff
@@ -41,5 +41,6 @@ in
         ];
       };
     };
+    xdg.configFile."bat/themes".source = inputs.catppuccin-bat;
   };
 }

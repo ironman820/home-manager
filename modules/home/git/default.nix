@@ -1,9 +1,12 @@
-{ config, inputs, lib, options, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit (lib) mkIf;
   inherit (lib.ironman) enabled mkBoolOpt;
+
   cfg = config.ironman.home.git;
+  configFolder = "${config.xdg.configHome}/lazygit";
+  modFolder = "${config.xdg.configHome}/home-manager/modules/home/git/";
 in {
   options.ironman.home.git = {
     enable = mkBoolOpt true "Setup git";
@@ -11,9 +14,6 @@ in {
 
   config = mkIf cfg.enable {
     home = {
-      file = {
-        ".config/lazygit/config.yml".source = mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/modules/home/git/lazygit.yml";
-      };
       packages = with pkgs; [
         git
         git-filter-repo
@@ -22,7 +22,7 @@ in {
         lazygit
       ];
       shellAliases = {
-        "lg" = "lazygit";
+        "lg" = ''lazygit --use-config-file="${configFolder}/config.yml,${configFolder}/themes/mocha/mocha-red.yml"'';
       };
     };
     programs.git = {
@@ -46,6 +46,10 @@ in {
       };
       userName = config.ironman.home.user.fullName;
       userEmail = config.ironman.home.user.email;
+    };
+    xdg.configFile = {
+      "lazygit/config.yml".source = mkOutOfStoreSymlink "${modFolder}/lazygit.yml";
+      "lazygit/themes".source = pkgs.catppuccin-lazygit;
     };
   };
 }

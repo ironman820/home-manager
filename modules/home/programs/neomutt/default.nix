@@ -5,6 +5,7 @@ let
   inherit (lib.ironman) enabled;
 
   cfg = config.ironman.home.programs.neomutt;
+  modFolder = "${config.xdg.configHome}/home-manager/modules/home/programs/neomutt";
 in {
   options.ironman.home.programs.neomutt = {
     enable = mkEnableOption "Install Neomutt";
@@ -62,13 +63,12 @@ in {
         ];
       };
       programs.neomutt = enabled;
-      xdg.configFile = let
-        hmPath = "${config.xdg.configHome}/home-manager/modules/home/programs/neomutt";
-      in {
-        "mutt/mailcap".source = mkOutOfStoreSymlink "${hmPath}/mailcap";
-        "mutt/muttrc".source = mkOutOfStoreSymlink "${hmPath}/muttrc";
-        "mutt/mutt-wizard.muttrc".source = mkOutOfStoreSymlink "${hmPath}/mutt-wizard.muttrc";
-        "mutt/switch.muttrc".source = mkOutOfStoreSymlink "${hmPath}/switch.muttrc";
+      xdg.configFile = {
+        "mutt/mailcap".source = mkOutOfStoreSymlink "${modFolder}/mailcap";
+        "mutt/muttrc".source = mkOutOfStoreSymlink "${modFolder}/muttrc";
+        "mutt/mutt-wizard.muttrc".source = mkOutOfStoreSymlink "${modFolder}/mutt-wizard.muttrc";
+        "mutt/switch.muttrc".source = mkOutOfStoreSymlink "${modFolder}/switch.muttrc";
+        "mutt/theme".source = "${pkgs.catppuccin-neomutt}/catppuccin-neomutt";
       };
     });
 }

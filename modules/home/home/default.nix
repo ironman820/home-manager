@@ -15,7 +15,6 @@ in
         dig
         duf
         fzf
-        htop
         inetutils
         jq
         neofetch
