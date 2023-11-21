@@ -1,4 +1,4 @@
-{ config, lib, pkgs, system, ... }:
+{ config, lib, pkgs, ... }:
 let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.ironman.home.gui-apps;

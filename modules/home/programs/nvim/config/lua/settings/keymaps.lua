@@ -1,16 +1,11 @@
 local opts = { noremap = true, silent = true }
 
-local term_opts = { silent = true }
-
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
 keymap("", "q", "<Nop>", opts)
 
---Remap space as leader key
-keymap("", "<Space>", "<Nop>", opts)
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+keymap("n", "<leader>p", "<Cmd>Lazy<cr>", { desc = "[P]lugin Manager" })
 
 -- Modes
 --   normal_mode = "n",
@@ -20,23 +15,9 @@ vim.g.maplocalleader = " "
 --   term_mode = "t",
 --   command_mode = "c",
 
--- Overwrite no copy
-opts.desc = "[P]aste without copying."
-keymap("x", "<leader>p", "\"_dP", opts)
-
--- Resize with arrows when using multiple windows
-keymap("n", "<C-Up>", ":resize -2<CR>", opts)
-keymap("n", "<c-down>", ":resize +2<cr>", opts)
-keymap("n", "<c-right>", ":vertical resize -2<cr>", opts)
-keymap("n", "<c-left>", ":vertical resize +2<cr>", opts)
-
 -- navigate buffers
 keymap("n", "<Tab>", "<cmd>bnext<cr>", opts) -- Next Tab
 keymap("n", "<s-tab>", "<cmd>bprevious<cr>", opts) -- Previous tab
-
--- move text up and down
-keymap("n", "<a-j>", "<esc>:m .+1<cr>==gi", opts) -- Alt-j
-keymap("n", "<a-k>", "<esc>:m .-2<cr>==gi", opts) -- Alt-k
 
 -- insert --
 -- press jk fast to exit insert mode
@@ -47,16 +28,3 @@ keymap("i", "kj", "<esc>", opts) -- Insert mode -> kj -> Normal mode
 -- stay in indent mode
 keymap("v", "<", "<gv", opts) -- Right Indentation
 keymap("v", ">", ">gv", opts) -- Left Indentation
-
--- move text up and down
-keymap("v", "<a-j>", ":m .+1<cr>==", opts)
-keymap("v", "<a-k>", ":m .-2<cr>==", opts)
-
--- Visual Block --
--- Move text up and down
-    --Terminal --
-keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
-keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
-

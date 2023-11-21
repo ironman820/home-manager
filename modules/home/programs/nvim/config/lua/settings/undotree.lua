@@ -1,5 +1,6 @@
 local undotree = require('undotree')
-
+local keys = vim.keymap
+keys.set("n", "<leader>u", undotree.toggle, { desc = "[U]ndo Tree" })
 undotree.setup({
   float_diff = true,  -- using float window previews diff, set this `true` will disable layout option
   layout = "left_bottom", -- "left_bottom", "left_left_bottom"
