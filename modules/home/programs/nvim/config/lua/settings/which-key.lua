@@ -85,11 +85,10 @@ local mappings = {
     n = { "<cmd>new<cr>", "[N]ew" },
     s = { "<cmd>w<cr>", "[S]ave" },
   },
-  e = { "<cmd>NvimTreeFocus<cr>", "Explorer" },
   f = {
     name = "[F]ind",
   },
-  g = { name = "[G]oto" },
+  g = { name = "[G]it" },
   l = {
     name = "[L]SP",
     c = { name = "[C]ode" },
@@ -121,4 +120,3 @@ local mappings = {
 
 which_key.setup(setup)
 which_key.register(mappings, opts)
-

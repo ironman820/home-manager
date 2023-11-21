@@ -40,13 +40,15 @@ telescope.setup({
 telescope.load_extension('fzf')
 
 local builtin = require('telescope.builtin')
+local keys = vim.keymap
 
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = "[B]uffers" })
-vim.keymap.set('n', '<leader>fc', builtin.commands, { desc = "[C]ommands" })
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = "[F]iles" })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = "[G]rep" })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = "[H]elp" })
-vim.keymap.set('n', '<leader>fk', builtin.keymaps, { desc = "[K]eymaps" })
-vim.keymap.set('n', '<leader>fp', builtin.builtin, { desc = "[P]ickers" })
-vim.keymap.set('n', '<leader>fr', builtin.oldfiles, { desc = "[R]ecent files" })
-
+keys.set('n', '<leader>fb', builtin.buffers, { desc = "[B]uffers" })
+keys.set('n', '<leader>fc', builtin.commands, { desc = "[C]ommands" })
+keys.set('n', '<leader>ff', builtin.find_files, { desc = "[F]iles" })
+keys.set('n', '<leader>fg', builtin.live_grep, { desc = "[G]rep" })
+keys.set('n', '<leader>fh', builtin.help_tags, { desc = "[H]elp" })
+keys.set('n', '<leader>fk', builtin.keymaps, { desc = "[K]eymaps" })
+keys.set('n', '<leader>fp', builtin.builtin, { desc = "[P]ickers" })
+keys.set('n', '<leader>fr', builtin.oldfiles, { desc = "[R]ecent files" })
+keys.set('n', '<leader>gb', builtin.git_branches, { desc = "[B]ranches" })
+keys.set('n', '<leader>gc', builtin.git_commits, { desc = "[C]ommits" })
