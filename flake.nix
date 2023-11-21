@@ -6,6 +6,22 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:ironman820/blockyalarm";
     };
+    catppuccin-bat = {
+      flake = false;
+      url = "github:catppuccin/bat";
+    };
+    catppuccin-btop = {
+      flake = false;
+      url = "github:catppuccin/btop";
+    };
+    catppuccin-lazygit = {
+      flake = false;
+      url = "github:catppuccin/lazygit";
+    };
+    catppuccin-neomutt = {
+      flake = false;
+      url = "github:catppuccin/neomutt";
+    };
     flake = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:snowfallorg/flake";
