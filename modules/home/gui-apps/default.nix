@@ -9,23 +9,28 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      brave
-      blender
-      element-desktop-wayland
-      firefox
-      gimp
-      google-chrome
-      libreoffice-fresh
-      microsoft-edge
-      obs-studio
-      # obsidian
-      putty
-      remmina
-      telegram-desktop
-      vlc
-      virt-viewer
-      # zotero
-    ];
+    home = {
+      packages = with pkgs; [
+        brave
+        blender
+        element-desktop-wayland
+        firefox
+        gimp
+        google-chrome
+        libreoffice-fresh
+        microsoft-edge
+        obs-studio
+        # obsidian
+        putty
+        remmina
+        telegram-desktop
+        vlc
+        virt-viewer
+        # zotero
+      ];
+      sessionVariables = {
+        BROWSER = "brave";
+      };
+    };
   };
 }
