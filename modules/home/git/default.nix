@@ -22,7 +22,9 @@ in {
         lazygit
       ];
       shellAliases = {
-        "lg" = ''lazygit --use-config-file="${configFolder}/config.yml,${configFolder}/themes/mocha/mocha-red.yml"'';
+      };
+      sessionVariables = {
+        LG_CONFIG_FILE = "${configFolder}/config.yml,${configFolder}/themes/mocha/mocha-red.yml";
       };
     };
     programs.git = {
@@ -37,6 +39,7 @@ in {
         feature.manyFiles = true;
         init.defaultBranch = "main";
         gpg.format = "ssh";
+        merge.tool = "vimdiff";
       };
       ignores = [ ".direnv" "result" ];
       lfs = enabled;
