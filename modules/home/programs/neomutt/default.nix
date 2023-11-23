@@ -52,6 +52,7 @@ in {
           browsh
           cacert
           curl
+          fim
           gettext
           isync
           lynx
