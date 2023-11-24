@@ -21,8 +21,6 @@ in {
         glab
         lazygit
       ];
-      shellAliases = {
-      };
       sessionVariables = {
         LG_CONFIG_FILE = "${configFolder}/config.yml,${configFolder}/themes/mocha/mocha-red.yml";
       };
