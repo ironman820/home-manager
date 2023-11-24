@@ -47,12 +47,12 @@ in
       stateVersion = "23.05";
     };
     programs = {
-      /* atuin = {
+      atuin = {
         enable = true;
         flags = [
           "--disable-up-arrow"
         ];
-      }; */
+      };
       bash = {
         bashrcExtra = ''
           chezmoi update -a
@@ -63,7 +63,7 @@ in
       };
       dircolors = enabled;
       direnv = enabled;
-      eza = {
+      exa = {
         enable = true;
         enableAliases = true;
         extraOptions = [

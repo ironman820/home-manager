@@ -11,12 +11,12 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
+    home.packages = (with pkgs; [
       bashmount
-        file
-        ranger
-        trashy
-    ];
+      file
+      ranger
+      trashy
+    ]);
     xdg.configFile."ranger/commands.py".source = mkOutOfStoreSymlink "/home/${config.ironman.home.user.name}/.config/home-manager/modules/home/programs/ranger/config/commands.py";
     xdg.configFile."ranger/rc.conf".source = mkOutOfStoreSymlink "/home/${config.ironman.home.user.name}/.config/home-manager/modules/home/programs/ranger/config/rc.conf";
     xdg.configFile."ranger/rifle.conf".source = mkOutOfStoreSymlink "/home/${config.ironman.home.user.name}/.config/home-manager/modules/home/programs/ranger/config/rifle.conf";

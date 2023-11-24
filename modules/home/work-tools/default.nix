@@ -14,7 +14,7 @@ in
         barrier
         dia
         # glocom
-        # qgis
+        qgis
         thunderbird
         wireshark
         zoom-us

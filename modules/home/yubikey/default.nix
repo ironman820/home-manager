@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, system, ... }:
 let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.ironman.home.yubikey;

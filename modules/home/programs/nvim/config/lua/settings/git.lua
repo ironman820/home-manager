@@ -48,5 +48,5 @@ gitsigns.setup {
 }
 
 local keys = vim.keymap
-keys.set("n", "<leader>go", "<Cmd>Git<Cr><C-W>T", { desc = "[O]pen Diff View"})
+keys.set("n", "<leader>go", "<Cmd>Git<Cr><C-W>_", { desc = "[O]pen Diff View"})
 keys.set("n", "<leader>gg", "<Cmd>LazyGit<Cr>", { desc = "Open Lazy[G]it"})
