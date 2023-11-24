@@ -62,6 +62,9 @@ in {
           pass
           urlview
         ];
+        shellAliases = {
+          mail = "neomutt";
+        };
       };
       programs.neomutt = enabled;
       xdg.configFile = {
