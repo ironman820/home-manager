@@ -12,8 +12,8 @@ in
   config = mkIf cfg.enable {
     ironman.home = {
       sops.secrets = {
-        github.sopsFile = ./secrets/github_servers.age;
-        royell_git.sopsFile = ./secrets/royell_git_servers.age;
+        github_home.sopsFile = ./secrets/servers.yaml;
+        royell_git_work.sopsFile = ./secrets/servers.yaml;
       };
       tmux.shortcut = "t";
     };

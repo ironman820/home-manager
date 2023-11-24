@@ -7,7 +7,7 @@ in {
     packages = [ pkgs.ironman.blockyalarm ];
   };
   ironman.home = {
-    sops.secrets.github.sopsFile = ./secrets/github_work.age;
+    sops.secrets.github_home.sopsFile = ./secrets/work-keys.yaml;
     networking = enabled;
     programs = {
       neomutt = {
