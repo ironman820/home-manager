@@ -14,6 +14,10 @@
       flake = false;
       url = "github:catppuccin/btop";
     };
+    catppuccin-kitty = {
+      flake = false;
+      url = "github:catppuccin/kitty";
+    };
     catppuccin-lazygit = {
       flake = false;
       url = "github:catppuccin/lazygit";

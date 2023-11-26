@@ -1,6 +1,5 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit (lib) mkDefault mkForce mkIf;
   inherit (lib.ironman) mkBoolOpt mkOpt;
   inherit (lib.types) attrs lines;
@@ -39,11 +38,10 @@ in {
 
   config = mkIf cfg.enable {
     ironman.home.kitty.extraConfig = ''
-      include current-theme.conf
+      include themes/mocha.conf
     '';
     home = {
-      file.".config/kitty/current-theme.conf".source = mkOutOfStoreSymlink
-        "${config.home.homeDirectory}/.config/home-manager/modules/home/kitty/theme.conf";
+      file.".config/kitty/themes.conf".source = pkgs.catppuccin-kitty;
       packages = [ nerdfonts ];
     };
     programs.kitty = {
