@@ -104,5 +104,6 @@ return {
       "ibhagwan/fzf-lua",              -- optional
     },
     config = true
-  }
+  },
+  "christoomey/vim-tmux-navigator",
 }

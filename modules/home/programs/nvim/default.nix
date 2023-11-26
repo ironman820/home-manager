@@ -22,6 +22,7 @@ let
     require("settings.treesitter")
     require("settings.ufo")
     require("settings.undotree")
+    require("settings.vim-tmux-navigator")
     require("settings.which-key")
   '';
   modFolder =
