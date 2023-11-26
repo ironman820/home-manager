@@ -1,14 +1,14 @@
-{ pkgs, lib, ... }:
+{ inputs, lib, pkgs, ... }:
 let
+  inherit (builtins) fromTOML readFile;
   inherit (lib) mkDefault;
   inherit (lib.ironman) enabled;
-in
-{
+in {
   config = {
     home = {
       file = {
-        ".config/is_personal".text = mkDefault ''true'';
-        ".config/is_server".text = mkDefault ''false'';
+        ".config/is_personal".text = mkDefault "true";
+        ".config/is_server".text = mkDefault "false";
       };
       packages = with pkgs; [
         chezmoi
@@ -29,10 +29,7 @@ in
         yq
         zip
       ];
-      sessionPath = [
-        "$HOME/bin"
-        "$HOME/.local/bin"
-      ];
+      sessionPath = [ "$HOME/bin" "$HOME/.local/bin" ];
       shellAliases = {
         "ca" = "chezmoi add";
         "cc" = "chezmoi cd";
@@ -42,16 +39,15 @@ in
         "cr" = "chezmoi re-add";
         "cu" = "chezmoi update";
         "df" = "duf";
-        "ducks" = "du -chs * 2>/dev/null | sort -rh | head -11 && du -chs .* 2>/dev/null | sort -rh | head -11";
+        "ducks" =
+          "du -chs * 2>/dev/null | sort -rh | head -11 && du -chs .* 2>/dev/null | sort -rh | head -11";
       };
       stateVersion = "23.05";
     };
     programs = {
       atuin = {
         enable = true;
-        flags = [
-          "--disable-up-arrow"
-        ];
+        flags = [ "--disable-up-arrow" ];
       };
       bash = {
         bashrcExtra = ''
@@ -66,10 +62,7 @@ in
       exa = {
         enable = true;
         enableAliases = true;
-        extraOptions = [
-          "--group-directories-first"
-          "--header"
-        ];
+        extraOptions = [ "--group-directories-first" "--header" ];
         git = true;
         icons = true;
       };
@@ -79,7 +72,8 @@ in
           personal-cipher-preferences = "AES256 AES192 AES";
           personal-digest-preferences = "SHA512 SHA384 SHA256";
           personal-compress-preferences = "ZLIB BZIP2 ZIP Uncompressed";
-          default-preference-list = "SHA512 SHA384 SHA256 AES256 AES192 AES ZLIB BZIP2 ZIP Uncompressed";
+          default-preference-list =
+            "SHA512 SHA384 SHA256 AES256 AES192 AES ZLIB BZIP2 ZIP Uncompressed";
           cert-digest-algo = "SHA512";
           s2k-digest-algo = "SHA512";
           s2k-cipher-algo = "AES256";
@@ -103,11 +97,10 @@ in
         enable = true;
         enableBashIntegration = true;
         settings = {
-          username = {
-            format = "user: [$user]($style) ";
-            show_always = true;
-          };
-        };
+          format = "$all";
+          palette = "catppuccin_mocha";
+        } // fromTOML
+          (readFile "${inputs.catppuccin-starship}/palettes/mocha.toml");
       };
       zoxide = enabled;
     };

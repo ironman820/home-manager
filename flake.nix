@@ -22,6 +22,10 @@
       flake = false;
       url = "github:catppuccin/neomutt";
     };
+    catppuccin-starship = {
+      flake = false;
+      url = "github:catppuccin/starship";
+    };
     flake = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:snowfallorg/flake";
