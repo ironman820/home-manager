@@ -1,25 +1,27 @@
 import os
 import subprocess
 from libqtile import hook
-from libqtile import bar, widget
+from libqtile import bar
 from libqtile.config import Click, Drag, Match, Screen
 from libqtile.layout.columns import Columns
 from libqtile.layout.floating import Floating
 from libqtile.layout.max import Max
 from libqtile.layout.xmonad import MonadWide
 from libqtile.lazy import lazy
-from libqtile.widget import (
-    Backlight,
-    Battery,
-    BatteryIcon,
-    GroupBox,
-    PulseVolume,
-    Wallpaper,
-)
+from libqtile.widget.backlight import Backlight
+from libqtile.widget.battery import Battery, BatteryIcon
+from libqtile.widget.clock import Clock
+from libqtile.widget.currentlayout import CurrentLayout
+from libqtile.widget.groupbox import GroupBox
+from libqtile.widget.prompt import Prompt
+from libqtile.widget.pulse_volume import PulseVolume
+from libqtile.widget.systray import Systray
+from libqtile.widget.wallpaper import Wallpaper
+from libqtile.widget.windowname import WindowName
 
 from display import watch_display  # pyright: ignore[reportMissingImports]
-from settings.keys import keys, mod
-from settings.groups import groups
+from settings.keys import keys, mod  # pyright: ignore # noqa: F401
+from settings.groups import groups  # pyright: ignore # noqa: F401
 
 
 @hook.subscribe.startup_once
@@ -58,10 +60,9 @@ screens = [
         top=bar.Bar(
             [
                 GroupBox(),
-                widget.Prompt(),
-                widget.WindowName(),
-                widget.CurrentLayout(),
-                widget.Systray(),
+                Prompt(),
+                WindowName(),
+                CurrentLayout(),
                 Backlight(
                     fmt=" {}",
                     backlight_name=watch_display,
@@ -74,7 +75,8 @@ screens = [
                 ),
                 BatteryIcon(),
                 Battery(format="{percent:2.0%}"),
-                widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
+                Systray(),
+                Clock(format="%Y-%m-%d %a %I:%M %p"),
                 Wallpaper(
                     directory="~/wallpapers",
                     max_chars=0,

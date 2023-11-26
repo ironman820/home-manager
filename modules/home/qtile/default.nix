@@ -22,6 +22,7 @@ in {
     xdg.configFile."qtile/autostart.sh".source =
       writeShellScript "autostart.sh" ''
         ${cfg.screenSizeCommand}
+        nm-applet &
       '';
     xdg.configFile."qtile/config.py".source = mkOutOfStoreSymlink
       "/home/${config.ironman.home.user.name}/.config/home-manager/modules/home/qtile/config/config.py";
