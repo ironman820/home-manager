@@ -1,13 +1,7 @@
-{ lib
-, inputs
-, fetchFromGitHub
-, pkgs
-, stdenv
-}:
+{ inputs, pkgs }:
 
-let
-  inherit (pkgs.tmuxPlugins) mkTmuxPlugin;
-in mkTmuxPlugin rec {
+let inherit (pkgs.tmuxPlugins) mkTmuxPlugin;
+in mkTmuxPlugin {
   pluginName = "tmux-session-wizard";
   rtpFilePath = "session-wizard.tmux";
   src = inputs.tmux-session-wizard;

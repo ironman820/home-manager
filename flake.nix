@@ -26,6 +26,10 @@
       flake = false;
       url = "github:catppuccin/starship";
     };
+    catppuccin-tmux = {
+      flake = false;
+      url = "github:catppuccin/tmux";
+    };
     flake = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:snowfallorg/flake";

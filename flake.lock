@@ -102,6 +102,22 @@
         "type": "github"
       }
     },
+    "catppuccin-tmux": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1698854691,
+        "narHash": "sha256-kn3kf7eiiwXj57tgA7fs5N2+B2r441OtBlM8IBBLl4I=",
+        "owner": "catppuccin",
+        "repo": "tmux",
+        "rev": "47e33044b4b47b1c1faca1e42508fc92be12131a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "catppuccin",
+        "repo": "tmux",
+        "type": "github"
+      }
+    },
     "flake": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -469,6 +485,7 @@
         "catppuccin-lazygit": "catppuccin-lazygit",
         "catppuccin-neomutt": "catppuccin-neomutt",
         "catppuccin-starship": "catppuccin-starship",
+        "catppuccin-tmux": "catppuccin-tmux",
         "flake": "flake",
         "home-manager": "home-manager",
         "nix-ld": "nix-ld",
