@@ -13,11 +13,11 @@ let
     require("settings.keymaps")
     require("settings.barbecue")
     require("settings.cmp")
-    require("settings.fidget")
     require("settings.git")
     require("settings.hop")
     require("settings.lspconfig")
     require("settings.mini")
+    require("settings.noice")
     require("settings.telescope")
     require("settings.treesitter")
     require("settings.ufo")
@@ -27,8 +27,6 @@ let
   '';
   modFolder =
     "${config.home.homeDirectory}/.config/home-manager/modules/home/programs/nvim";
-  telescope-fzf = pkgs.vimPlugins.telescope-fzf-native-nvim;
-  treesitter = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
 in {
   options.ironman.home.programs.nvim = {
     enable = mkBoolOpt true "Install NeoVim";
@@ -48,12 +46,11 @@ in {
       extraPackages = (with pkgs; [
         fd
         ripgrep
-        telescope-fzf
         tree-sitter
-        treesitter
         xclip
         efm-langserver
         lua-language-server
+        mercurial
         nil
         nixfmt
         statix
@@ -72,11 +69,11 @@ in {
       dataFile = {
         "nvim/nix/nvim-treesitter/" = {
           recursive = true;
-          source = treesitter;
+          source = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
         };
         "nvim/nix/telescope-fzf-native.nvim/" = {
           recursive = true;
-          source = telescope-fzf;
+          source = pkgs.vimPlugins.telescope-fzf-native-nvim;
         };
       };
     };

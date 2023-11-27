@@ -48,12 +48,5 @@ gitsigns.setup({
 })
 
 local keys = vim.keymap
-keys.set("n", "<leader>gpf", "<Cmd>Git push --force<Cr><C-W>_", { desc = "Git [P]ush [F]orce" })
 keys.set("n", "<leader>gg", "<Cmd>LazyGit<Cr>", { desc = "Open Lazy[G]it" })
-keys.set("n", "<leader>gl", "<Cmd>Git log<Cr><C-W>_", { desc = "Open Git [L]og" })
 keys.set("n", "<leader>go", "<Cmd>Neogit<Cr>", { desc = "[O]pen Git View" })
-keys.set("n", "<leader>gpl", "<Cmd>Git pull<Cr><C-W>_", { desc = "Git [P]u[l]l" })
-keys.set("n", "<leader>gpr", "<Cmd>Git pull --rebase<Cr><C-W>_", { desc = "Git [P]ull [R]ebase" })
-keys.set("n", "<leader>gps", "<Cmd>Git push<Cr><C-W>_", { desc = "Git [P]u[s]h" })
-keys.set("n", "<leader>grb", "ri", { desc = "Git Re[b]ase" })
-keys.set("n", "<leader>grv", "crn", { desc = "Git Re[v]ert" })

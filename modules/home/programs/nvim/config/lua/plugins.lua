@@ -28,7 +28,6 @@ return {
       vim.cmd([[colorscheme catppuccin-mocha]]) -- Color scheme
     end,
   },
-  "j-hui/fidget.nvim",
   {
     "lewis6991/gitsigns.nvim",
     dependencies = {
@@ -86,9 +85,6 @@ return {
     event = "VeryLazy",
   },
   {
-    "tpope/vim-fugitive",
-  },
-  {
     "kdheepak/lazygit.nvim",
     dependencies = {
       "nvim-lua/plenary.nvim",
@@ -98,12 +94,29 @@ return {
   {
     "NeogitOrg/neogit",
     dependencies = {
-      "nvim-lua/plenary.nvim",         -- required
+      "nvim-lua/plenary.nvim", -- required
       "nvim-telescope/telescope.nvim", -- optional
-      "sindrets/diffview.nvim",        -- optional
-      "ibhagwan/fzf-lua",              -- optional
+      "sindrets/diffview.nvim", -- optional
+      "ibhagwan/fzf-lua", -- optional
     },
-    config = true
+    config = true,
   },
   "christoomey/vim-tmux-navigator",
+  {
+    "folke/noice.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "rcarriga/nvim-notify",
+    },
+    event = "VeryLazy",
+  },
+  {
+    "Jxstxs/conceal.nvim",
+    dependencies = {
+      {
+        "nvim-treesitter/nvim-treesitter",
+        dev = true,
+      },
+    },
+  },
 }
