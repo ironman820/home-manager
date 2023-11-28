@@ -26,6 +26,10 @@ in {
             inherit sopsFile;
             path = "${config.xdg.configHome}/mutt/accounts/master.muttrc";
           };
+          "muttrc_work_email" = {
+            inherit sopsFile;
+            path = "${config.xdg.configHome}/mutt/accounts/work.muttrc";
+          };
           "msmtp_personal_config" = {
             inherit sopsFile;
             path = "${config.xdg.configHome}/msmtp/config";
