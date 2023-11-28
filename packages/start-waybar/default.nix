@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 let
   inherit (pkgs) writeShellScriptBin;
 in writeShellScriptBin "start-waybar" ''

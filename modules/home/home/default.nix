@@ -14,6 +14,7 @@ in {
         chezmoi
         dig
         duf
+        eltclsh
         fzf
         inetutils
         jq
@@ -25,6 +26,7 @@ in {
         qrencode
         restic
         ripgrep
+        switchssh
         unzip
         yq
         zip
