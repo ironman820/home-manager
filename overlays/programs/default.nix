@@ -1,5 +1,5 @@
 { channels, ... }:
 final: prev:
 {
-  inherit (prev.ironman) switchssh;
+  inherit (prev.ironman) s switchssh;
 }
