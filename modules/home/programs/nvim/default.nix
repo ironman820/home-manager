@@ -10,6 +10,7 @@ let
 
     require "lazy-load"
     require("settings.options")
+    require("settings.conceal")
     require("settings.keymaps")
     require("settings.barbecue")
     require("settings.cmp")

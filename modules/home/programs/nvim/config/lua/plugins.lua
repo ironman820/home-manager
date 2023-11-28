@@ -110,4 +110,13 @@ return {
     },
     event = "VeryLazy",
   },
+  { "Jxstxs/conceal.nvim",
+    dependencies = {
+      {
+        "nvim-treesitter/nvim-treesitter",
+        dev = true,
+      },
+    },
+    lazy = false,
+  },
 }
