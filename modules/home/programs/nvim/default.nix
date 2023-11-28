@@ -64,8 +64,13 @@ in {
       withRuby = false;
     };
     xdg = {
-      configFile."nvim/lua".source =
-        mkOutOfStoreSymlink "${modFolder}/config/lua";
+      configFile = {
+        "nvim/lua".source = mkOutOfStoreSymlink "${modFolder}/config/lua";
+        "nvim/parser".source = "${pkgs.symlinkJoin {
+          name = "treesitter-parsers";
+          paths = pkgs.vimPlugins.nvim-treesitter.withAllGrammars.dependencies;
+        }}/parser";
+      };
       dataFile = {
         "nvim/nix/nvim-treesitter/" = {
           recursive = true;
