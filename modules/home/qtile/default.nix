@@ -18,6 +18,7 @@ in {
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       flameshot
+      zathura
     ];
     xdg.configFile."qtile/autostart.sh".source =
       writeShellScript "autostart.sh" ''
