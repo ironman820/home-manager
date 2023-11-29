@@ -1,10 +1,9 @@
 { lib, pkgs, ... }:
-let
-  inherit (lib.ironman) enabled;
+let inherit (lib.ironman) enabled;
 in {
   home = {
     file.".config/is_personal".text = "false";
-    packages = [ pkgs.ironman.blockyalarm ];
+    packages = with pkgs; [ ironman.blockyalarm steam-run ];
   };
   ironman.home = {
     sops.secrets.github_home.sopsFile = ./secrets/work-keys.yaml;
