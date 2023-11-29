@@ -1,4 +1,4 @@
-{ config, inputs, lib, options, pkgs, ... }:
+{ config, lib, options, pkgs, ... }:
 let
   inherit (lib) mkAliasDefinitions mkDefault mkIf mkMerge;
   inherit (lib.ironman) mkBoolOpt mkOpt;
@@ -9,6 +9,7 @@ in {
     enable = mkBoolOpt true "Enable root secrets";
     age = mkOpt attrs { } "Age Attributes";
     defaultSopsFile = mkOpt path ./secrets/keys.yaml "Default SOPS file path.";
+    install = mkBoolOpt false "Install sops in home manager";
     secrets = mkOpt attrs { } "SOPS secrets.";
   };
 
@@ -25,15 +26,15 @@ in {
         };
         github_home_pub = {
           mode = "0400";
-          path = "${config.home.homeDirectory}/.ssh/github_home.pub";
+          path = mkDefault "${config.home.homeDirectory}/.ssh/github.pub";
         };
         github_servers_pub = {
           mode = "0400";
-          path = "${config.home.homeDirectory}/.ssh/github_servers.pub";
+          path = mkDefault "${config.home.homeDirectory}/.ssh/github_servers.pub";
         };
         github_work_pub = {
           mode = "0400";
-          path = "${config.home.homeDirectory}/.ssh/github_work.pub";
+          path = mkDefault "${config.home.homeDirectory}/.ssh/github_work.pub";
         };
         royell_git_work = {
           mode = "0400";
@@ -52,6 +53,9 @@ in {
         };
       }];
     };
+    home.packages = mkIf cfg.install (with pkgs; [
+      sops
+    ]);
     sops = {
       age = mkAliasDefinitions options.ironman.home.sops.age;
       defaultSopsFile =
