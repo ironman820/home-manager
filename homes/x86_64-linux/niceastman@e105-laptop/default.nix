@@ -1,12 +1,18 @@
-{ lib, pkgs, ... }:
-let inherit (lib.ironman) enabled;
+{ config, lib, pkgs, ... }:
+let
+  inherit (lib.ironman) enabled;
+  sshFolder = "${config.home.homeDirectory}/.ssh";
 in {
   home = {
     file.".config/is_personal".text = "false";
     packages = with pkgs; [ ironman.blockyalarm steam-run ];
   };
   ironman.home = {
-    sops.secrets.github_home.sopsFile = ./secrets/work-keys.yaml;
+    sops.secrets = {
+      github_home.sopsFile = ./secrets/work-keys.yaml;
+      github_home_pub.path = "${sshFolder}/github_home.pub";
+      github_work_pub.path = "${sshFolder}/github.pub";
+    };
     networking = enabled;
     programs = {
       neomutt = {

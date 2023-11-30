@@ -4,6 +4,8 @@ let
   inherit (lib.ironman) mkBoolOpt mkOpt;
   inherit (lib.types) attrs path;
   cfg = config.ironman.home.sops;
+  mode = "0400";
+  sopsFile = ./secrets/work-keys.yaml;
 in {
   options.ironman.home.sops = {
     enable = mkBoolOpt true "Enable root secrets";
@@ -20,42 +22,58 @@ in {
         sshKeyPaths = [ ];
       };
       secrets = mkMerge [{
+        authorized_keys = {
+          inherit mode;
+          path = "${config.home.homeDirectory}/.ssh/authorized_keys";
+        };
         github_home = {
-          mode = "0400";
+          inherit mode;
           path = "${config.home.homeDirectory}/.ssh/github";
         };
         github_home_pub = {
-          mode = "0400";
+          inherit mode;
           path = mkDefault "${config.home.homeDirectory}/.ssh/github.pub";
         };
         github_servers_pub = {
-          mode = "0400";
-          path = mkDefault "${config.home.homeDirectory}/.ssh/github_servers.pub";
+          inherit mode;
+          path =
+            mkDefault "${config.home.homeDirectory}/.ssh/github_servers.pub";
         };
         github_work_pub = {
-          mode = "0400";
+          inherit mode;
           path = mkDefault "${config.home.homeDirectory}/.ssh/github_work.pub";
         };
+        id_ed25519_sk = {
+          inherit mode;
+          path = mkDefault "${config.home.homeDirectory}/.ssh/id_ed25519_sk";
+        };
+        id_ed25519_sk_pub = {
+          inherit mode;
+          path = mkDefault "${config.home.homeDirectory}/.ssh/id_ed25519_sk.pub";
+        };
+        id_ed25519_sk_work_pub = {
+          inherit mode;
+          path = mkDefault "${config.home.homeDirectory}/.ssh/id_ed25519_sk_work.pub";
+        };
+        id_ed25519_sk_work2_pub = {
+          inherit mode;
+          path = mkDefault "${config.home.homeDirectory}/.ssh/id_ed25519_sk_work2.pub";
+        };
         royell_git_work = {
-          mode = "0400";
+          inherit mode sopsFile;
           path = "${config.home.homeDirectory}/.ssh/royell_git";
-          sopsFile = mkDefault ./secrets/work-keys.yaml;
         };
         royell_git_servers_pub = {
-          mode = "0400";
+          inherit mode sopsFile;
           path = "${config.home.homeDirectory}/.ssh/royell_git_servers.pub";
-          sopsFile = ./secrets/work-keys.yaml;
         };
         royell_git_work_pub = {
-          mode = "0400";
-          path = "${config.home.homeDirectory}/.ssh/royell_git_work.pub";
-          sopsFile = ./secrets/work-keys.yaml;
+          inherit mode sopsFile;
+          path = "${config.home.homeDirectory}/.ssh/royell_git.pub";
         };
       }];
     };
-    home.packages = mkIf cfg.install (with pkgs; [
-      sops
-    ]);
+    home.packages = mkIf cfg.install (with pkgs; [ sops ]);
     sops = {
       age = mkAliasDefinitions options.ironman.home.sops.age;
       defaultSopsFile =
