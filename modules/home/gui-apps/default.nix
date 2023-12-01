@@ -1,36 +1,33 @@
 { config, lib, pkgs, ... }:
 let
+  inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit (lib) mkEnableOption mkIf;
   cfg = config.ironman.home.gui-apps;
-in
-{
+in {
   options.ironman.home.gui-apps = {
     enable = mkEnableOption "Enable the default settings?";
   };
 
   config = mkIf cfg.enable {
     home = {
+      file."putty/sessions/FS Switch".source = mkOutOfStoreSymlink
+        "${config.xdg.configHome}/home-manager/modules/home/gui-apps/config/putty/FS%20Switch";
       packages = with pkgs; [
         brave
         blender
-        element-desktop-wayland
         firefox
         gimp
         google-chrome
         libreoffice-fresh
         microsoft-edge
         obs-studio
-        # obsidian
         putty
         remmina
         telegram-desktop
         vlc
         virt-viewer
-        # zotero
       ];
-      sessionVariables = {
-        BROWSER = "brave";
-      };
+      sessionVariables = { BROWSER = "brave"; };
     };
   };
 }
