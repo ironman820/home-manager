@@ -88,7 +88,7 @@ in {
         yb_keys = {
           inherit mode;
           format = "binary";
-          sopsFile = ./secrets/yb_keys.sops;
+          sopsFile = mkDefault ./secrets/yb_keys.sops;
           path = "${config.xdg.configHome}/Yubico/u2f_keys";
         };
       }];
