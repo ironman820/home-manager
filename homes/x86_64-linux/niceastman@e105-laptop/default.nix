@@ -1,6 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   inherit (lib.ironman) enabled;
+  sopsFile = ./secrets/work-keys.yaml;
   sshFolder = "${config.home.homeDirectory}/.ssh";
 in {
   home = {
@@ -9,9 +10,16 @@ in {
   };
   ironman.home = {
     sops.secrets = {
-      github_home.sopsFile = ./secrets/work-keys.yaml;
+      github_home = { inherit sopsFile; };
       github_home_pub.path = "${sshFolder}/github_home.pub";
       github_work_pub.path = "${sshFolder}/github.pub";
+      id_ed25519_sk = { inherit sopsFile; };
+      id_ed25519_sk_work_pub.path = "${sshFolder}/id_ed25519_sk.pub";
+      id_ed25519_sk_work2 = {
+        inherit sopsFile;
+        mode = "0400";
+        path = "${sshFolder}/id_ed25519_sk_work2";
+      };
     };
     networking = enabled;
     programs = {

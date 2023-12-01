@@ -49,15 +49,23 @@ in {
         };
         id_ed25519_sk_pub = {
           inherit mode;
-          path = mkDefault "${config.home.homeDirectory}/.ssh/id_ed25519_sk.pub";
+          path =
+            mkDefault "${config.home.homeDirectory}/.ssh/id_ed25519_sk.pub";
         };
         id_ed25519_sk_work_pub = {
           inherit mode;
-          path = mkDefault "${config.home.homeDirectory}/.ssh/id_ed25519_sk_work.pub";
+          path = mkDefault
+            "${config.home.homeDirectory}/.ssh/id_ed25519_sk_work.pub";
         };
         id_ed25519_sk_work2_pub = {
           inherit mode;
-          path = mkDefault "${config.home.homeDirectory}/.ssh/id_ed25519_sk_work2.pub";
+          path = mkDefault
+            "${config.home.homeDirectory}/.ssh/id_ed25519_sk_work2.pub";
+        };
+        id_rsa_yubikey_pub = {
+          inherit mode;
+          path =
+            mkDefault "${config.home.homeDirectory}/.ssh/id_rsa_yubikey.pub";
         };
         royell_git_work = {
           inherit mode sopsFile;
