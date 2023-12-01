@@ -67,6 +67,12 @@ in {
           path =
             mkDefault "${config.home.homeDirectory}/.ssh/id_rsa_yubikey.pub";
         };
+        my-config = {
+          inherit mode;
+          format = "binary";
+          sopsFile = ./secrets/my-config.sops;
+          path = "${config.home.homeDirectory}/.ssh/my-config";
+        };
         royell_git_work = {
           inherit mode sopsFile;
           path = "${config.home.homeDirectory}/.ssh/royell_git";
