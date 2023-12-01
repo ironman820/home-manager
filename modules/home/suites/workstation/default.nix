@@ -18,6 +18,5 @@ in
       virtual.host = enabled;
       yubikey = enabled;
     };
-    home.file.".config/is_server".text = ''false'';
   };
 }

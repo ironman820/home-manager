@@ -5,7 +5,6 @@ let
   sshFolder = "${config.home.homeDirectory}/.ssh";
 in {
   home = {
-    file.".config/is_personal".text = "false";
     packages = with pkgs; [ ironman.blockyalarm steam-run ];
   };
   ironman.home = {

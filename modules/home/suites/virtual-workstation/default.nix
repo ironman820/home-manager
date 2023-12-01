@@ -1,4 +1,4 @@
-{ config, lib, pkgs, system, ... }:
+{ config, lib, ... }:
 let
   inherit (lib) mkEnableOption mkIf;
   inherit (lib.ironman) enabled;
@@ -9,7 +9,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-      home.file.".config/is_server".text = ''false'';
       ironman.home = {
         gnome = enabled;
         sync = enabled;

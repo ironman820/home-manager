@@ -1,17 +1,11 @@
 { inputs, lib, pkgs, ... }:
 let
   inherit (builtins) fromTOML readFile;
-  inherit (lib) mkDefault;
   inherit (lib.ironman) enabled;
 in {
   config = {
     home = {
-      file = {
-        ".config/is_personal".text = mkDefault "true";
-        ".config/is_server".text = mkDefault "false";
-      };
       packages = with pkgs; [
-        chezmoi
         dig
         duf
         eltclsh
@@ -33,13 +27,6 @@ in {
       ];
       sessionPath = [ "$HOME/bin" "$HOME/.local/bin" ];
       shellAliases = {
-        "ca" = "chezmoi add";
-        "cc" = "chezmoi cd";
-        "ce" = "chezmoi edit --apply";
-        "cf" = "chezmoi forget";
-        "ci" = "chezmoi init";
-        "cr" = "chezmoi re-add";
-        "cu" = "chezmoi update";
         "df" = "duf";
         "ducks" =
           "du -chs * 2>/dev/null | sort -rh | head -11 && du -chs .* 2>/dev/null | sort -rh | head -11";
@@ -52,9 +39,6 @@ in {
         flags = [ "--disable-up-arrow" ];
       };
       bash = {
-        bashrcExtra = ''
-          chezmoi update -a
-        '';
         enable = true;
         enableCompletion = true;
         enableVteIntegration = true;
