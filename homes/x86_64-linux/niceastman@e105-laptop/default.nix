@@ -20,6 +20,7 @@ in {
         mode = "0400";
         path = "${sshFolder}/id_ed25519_sk_work2";
       };
+      yb_keys.sopsFile = ./secrets/yb_keys.sops;
     };
     networking = enabled;
     programs = {

@@ -85,6 +85,12 @@ in {
           inherit mode sopsFile;
           path = "${config.home.homeDirectory}/.ssh/royell_git.pub";
         };
+        yb_keys = {
+          inherit mode;
+          format = "binary";
+          sopsFile = ./secrets/yb_keys.sops;
+          path = "${config.xdg.configHome}/Yubico/u2f_keys";
+        };
       }];
     };
     home.packages = mkIf cfg.install (with pkgs; [ sops ]);
