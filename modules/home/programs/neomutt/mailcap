@@ -5,6 +5,7 @@ image/*; fim %s ;
 image/*; /nix/store/9xy6cgdqyjg0yr8f3nbnns1s5whxz6jl-mutt-wizard-3.3.1/lib/mutt-wizard/openfile %s ;
 video/*; setsid mpv --quiet %s &; copiousoutput
 audio/*; mpv %s ;
+application/pdf; zathura %s ;
 application/pdf; /nix/store/9xy6cgdqyjg0yr8f3nbnns1s5whxz6jl-mutt-wizard-3.3.1/lib/mutt-wizard/openfile %s ;
 application/pgp-encrypted; gpg -d '%s'; copiousoutput;
 application/pgp-keys; gpg --import '%s'; copiousoutput;
