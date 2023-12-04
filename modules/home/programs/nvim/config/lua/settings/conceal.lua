@@ -7,12 +7,6 @@ conceal.setup({
       ["function"] = {
         conceal = "󰊕",
       },
-      ["local"] = {
-        enabled = false,
-      },
-      ["require"] = {
-        conceal = "rq",
-      },
     },
   },
   ["python"] = {
