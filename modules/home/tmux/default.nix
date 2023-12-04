@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkEnableOption mkIf;
   inherit (lib.ironman) mkBoolOpt mkOpt;
   inherit (lib.types) int lines str;
   inherit (pkgs.tmuxPlugins) catppuccin-tmux sensible tmux-session-wizard vim-tmux-navigator yank;
@@ -8,7 +8,7 @@ let
   cfg = config.ironman.home.tmux;
 in {
   options.ironman.home.tmux = {
-    enable = mkBoolOpt true "Setup tmux";
+    enable = mkEnableOption "Setup tmux";
     baseIndex = mkOpt int 1 "Base number for windows";
     clock24 = mkBoolOpt true "Use a 24 hour clock";
     extraConfig = mkOpt lines "" "Extra configuration options";
