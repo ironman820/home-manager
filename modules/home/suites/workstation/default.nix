@@ -13,6 +13,7 @@ in
     ironman.home = {
       gui-apps = enabled;
       qtile = enabled;
+      rofi = enabled;
       sync = enabled;
       video-tools = enabled;
       virtual.host = enabled;

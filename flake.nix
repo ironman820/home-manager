@@ -26,6 +26,10 @@
       flake = false;
       url = "github:catppuccin/neomutt";
     };
+    catppuccin-rofi = {
+      flake = false;
+      url = "github:catppuccin/rofi";
+    };
     catppuccin-starship = {
       flake = false;
       url = "github:catppuccin/starship";
