@@ -74,16 +74,18 @@ in {
           path = "${config.home.homeDirectory}/.ssh/my-config";
         };
         royell_git_work = {
-          inherit mode sopsFile;
+          inherit mode;
+          sopsFile = mkDefault sopsFile;
           path = "${config.home.homeDirectory}/.ssh/royell_git";
         };
         royell_git_servers_pub = {
           inherit mode sopsFile;
-          path = "${config.home.homeDirectory}/.ssh/royell_git_servers.pub";
+          path = mkDefault
+            "${config.home.homeDirectory}/.ssh/royell_git_servers.pub";
         };
         royell_git_work_pub = {
           inherit mode sopsFile;
-          path = "${config.home.homeDirectory}/.ssh/royell_git.pub";
+          path = mkDefault "${config.home.homeDirectory}/.ssh/royell_git.pub";
         };
         yb_keys = {
           inherit mode;
