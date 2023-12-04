@@ -38,6 +38,7 @@ telescope.setup({
   }
 })
 telescope.load_extension('fzf')
+telescope.load_extension('dap')
 
 local builtin = require('telescope.builtin')
 local keys = vim.keymap

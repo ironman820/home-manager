@@ -3,6 +3,7 @@
     myPythonPackages = py:
       with py; [
         black
+        debugpy
         flake8
         qtile
       ];

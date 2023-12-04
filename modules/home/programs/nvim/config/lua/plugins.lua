@@ -110,7 +110,8 @@ return {
     },
     event = "VeryLazy",
   },
-  { "Jxstxs/conceal.nvim",
+  {
+    "Jxstxs/conceal.nvim",
     dependencies = {
       {
         "nvim-treesitter/nvim-treesitter",
@@ -118,5 +119,13 @@ return {
       },
     },
     lazy = false,
+  },
+  {
+    "mfussenegger/nvim-dap",
+    dependencies = {
+      "mfussenegger/nvim-dap-python",
+      "rcarriga/nvim-dap-ui",
+      "nvim-telescope/telescope-dap.nvim",
+    },
   },
 }

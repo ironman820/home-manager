@@ -14,6 +14,7 @@ let
     require("settings.keymaps")
     require("settings.barbecue")
     require("settings.cmp")
+    require("settings.dap")
     require("settings.git")
     require("settings.hop")
     require("settings.lspconfig")

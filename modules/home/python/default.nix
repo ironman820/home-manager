@@ -9,6 +9,7 @@ let
       black
       cffi
       dbus-next
+      debugpy
       flake8
       jedi
       jedi-language-server
