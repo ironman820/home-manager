@@ -22,10 +22,6 @@ in {
         sshKeyPaths = [ ];
       };
       secrets = mkMerge [{
-        authorized_keys = {
-          inherit mode;
-          path = "${config.home.homeDirectory}/.ssh/authorized_keys";
-        };
         github_home = {
           inherit mode;
           path = "${config.home.homeDirectory}/.ssh/github";
