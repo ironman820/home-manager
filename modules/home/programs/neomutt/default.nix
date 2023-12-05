@@ -81,9 +81,11 @@ in {
       "mutt/muttrc".source = mkOutOfStoreSymlink "${modFolder}/muttrc";
       "mutt/mutt-wizard.muttrc".source =
         mkOutOfStoreSymlink "${modFolder}/mutt-wizard.muttrc";
+      "mutt/personal.mailboxes".source = mkOutOfStoreSymlink "${modFolder}/personal.mailboxes";
       "mutt/switch.muttrc".source =
         mkOutOfStoreSymlink "${modFolder}/switch.muttrc";
       "mutt/theme".source = "${pkgs.catppuccin-neomutt}/catppuccin-neomutt";
+      "mutt/work.mailboxes".source = mkOutOfStoreSymlink "${modFolder}/work.mailboxes";
     };
   });
 }
