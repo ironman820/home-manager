@@ -72,7 +72,9 @@ lspconfig.nil_ls.setup(opts)
 --   }
 -- end
 lspconfig.pyright.setup(opts)
-lspconfig.phpactor.setup(opts)
+opts['cmd'] = { "psalm", "--language-server" }
+lspconfig.psalm.setup(opts)
+opts['cmd'] = nil
 
 -- PyrightSetPythonPath(result)
 
