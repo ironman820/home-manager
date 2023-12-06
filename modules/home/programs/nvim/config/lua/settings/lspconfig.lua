@@ -72,6 +72,7 @@ lspconfig.nil_ls.setup(opts)
 --   }
 -- end
 lspconfig.pyright.setup(opts)
+lspconfig.phpactor.setup(opts)
 
 -- PyrightSetPythonPath(result)
 
