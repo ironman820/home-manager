@@ -45,7 +45,7 @@ in {
       };
       dircolors = enabled;
       direnv = enabled;
-      exa = {
+      eza = {
         enable = true;
         enableAliases = true;
         extraOptions = [ "--group-directories-first" "--header" ];

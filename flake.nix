@@ -44,14 +44,14 @@
     };
     home-manager = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager/release-23.11";
     };
     nix-ld = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:mic92/nix-ld";
     };
     nixos-hardware.url = "github:nixos/nixos-hardware";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     # acc5f7b - IcedTea v8 Stable
     nixpkgs-acc5f7b.url = "github:nixos/nixpkgs/acc5f7b";
     # ba45a55 - The last stable update of PHP 7.4
