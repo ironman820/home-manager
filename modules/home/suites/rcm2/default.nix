@@ -1,4 +1,4 @@
-{ config, lib, options, pkgs, system, ... }:
+{ config, lib, ... }:
 let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.ironman.home.suites.server.rcm2;
