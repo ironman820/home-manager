@@ -75,6 +75,7 @@ lspconfig.pyright.setup(opts)
 opts['cmd'] = { "psalm", "--language-server" }
 lspconfig.psalm.setup(opts)
 opts['cmd'] = nil
+lspconfig.taplo.setup(opts)
 
 -- PyrightSetPythonPath(result)
 

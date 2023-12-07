@@ -57,6 +57,7 @@ in {
         nixfmt
         statix
         stylua
+        taplo-lsp
       ]) ++ (with pkgs.luaPackages; [ luacheck ]);
 
       viAlias = true;
