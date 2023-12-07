@@ -66,6 +66,7 @@ in {
         fim
         gettext
         isync
+        lieer
         lynx
         mutt-wizard
         msmtp
