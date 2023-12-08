@@ -27,6 +27,10 @@ in {
           inherit sopsFile;
           path = "${config.xdg.configHome}/msmtp/config";
         };
+        "notmuch-config" = {
+          inherit sopsFile;
+          path = "${config.home.homeDirectory}/.notmuch-config";
+        };
         "work_sig" = {
           inherit sopsFile;
           path = "${configFolder}/signatures/work.sig";
@@ -45,11 +49,6 @@ in {
           inherit sopsFile;
           path = "${configFolder}/accounts/work.muttrc";
         };
-        "notmuch-config" = {
-          format = "binary";
-          path = "${config.home.homeDirectory}/.notmuch-config";
-          sopsFile = ./secrets/notmuch-personal.sops;
-        };
       })
       (mkIf cfg.workEmail {
         "muttrc_work_email" = {
@@ -59,11 +58,6 @@ in {
         "muttrc_personal_email" = {
           inherit sopsFile;
           path = "${configFolder}/accounts/personal.muttrc";
-        };
-        "notmuch-config" = {
-          format = "binary";
-          path = "${config.home.homeDirectory}/.notmuch-config";
-          sopsFile = ./secrets/notmuch-work.sops;
         };
       })
     ];
