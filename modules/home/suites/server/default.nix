@@ -1,6 +1,7 @@
 { config, lib, ... }:
 let
   inherit (lib) mkEnableOption mkIf;
+  inherit (lib.ironman) disabled enabled;
   cfg = config.ironman.home.suites.server;
 in {
   options.ironman.home.suites.server = {
@@ -19,7 +20,8 @@ in {
         royell_git_work_pub.path = "${config.home.homeDirectory}/.ssh/royell_git_work.pub";
         royell_git_servers_pub.path = "${config.home.homeDirectory}/.ssh/royell_git.pub";
       };
-      zellij.lockShortcut = "z";
+      tmux = disabled;
+      zellij = enabled;
     };
   };
 }

@@ -1,13 +1,13 @@
 { config, lib, ... }:
 let
-  inherit (lib) mkIf;
-  inherit (lib.ironman) mkBoolOpt mkOpt;
+  inherit (lib) mkEnableOption mkIf;
+  inherit (lib.ironman) mkOpt;
   inherit (lib.types) str;
 
   cfg = config.ironman.home.zellij;
 in {
   options.ironman.home.zellij = {
-    enable = mkBoolOpt true "Setup zellij";
+    enable = mkEnableOption "Setup zellij";
     lockShortcut = mkOpt str "g" "Default shortcut to lock zellij actions";
   };
 
