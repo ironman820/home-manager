@@ -128,5 +128,9 @@ return {
       "nvim-telescope/telescope-dap.nvim",
     },
   },
-  'anuvyklack/keymap-amend.nvim',
+  "anuvyklack/keymap-amend.nvim",
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
 }

@@ -22,6 +22,7 @@ let
     require("settings.noice")
     require("settings.telescope")
     require("settings.treesitter")
+    require("settings.trouble")
     require("settings.ufo")
     require("settings.undotree")
     require("settings.vim-tmux-navigator")
@@ -69,10 +70,13 @@ in {
     xdg = {
       configFile = {
         "nvim/lua".source = mkOutOfStoreSymlink "${modFolder}/config/lua";
-        "nvim/parser".source = "${pkgs.symlinkJoin {
-          name = "treesitter-parsers";
-          paths = pkgs.vimPlugins.nvim-treesitter.withAllGrammars.dependencies;
-        }}/parser";
+        "nvim/parser".source = "${
+            pkgs.symlinkJoin {
+              name = "treesitter-parsers";
+              paths =
+                pkgs.vimPlugins.nvim-treesitter.withAllGrammars.dependencies;
+            }
+          }/parser";
       };
       dataFile = {
         "nvim/nix/nvim-treesitter/" = {
