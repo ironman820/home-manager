@@ -49,9 +49,13 @@ opts['settings']['Lua'] = {
   completion = {
     callSnippet = "Replace",
   },
+  diagnostics = {
+    globals = {"vim"},
+  },
   workspace = {
     checkThirdParty = false,
     library = {
+      [vim.env.VIMRUNTIME] = true,
       [vim.fn.expand("$VIMRUNTIME/lua")] = true,
       [vim.fn.stdpath("config") .. "/lua"] = true,
       -- ["${3rd}/luv/library"] = true,
@@ -79,7 +83,6 @@ lspconfig.taplo.setup(opts)
 
 -- PyrightSetPythonPath(result)
 
-local luacheck = require("efmls-configs.linters.luacheck")
 local stylua = require("efmls-configs.formatters.stylua")
 local statix = require("efmls-configs.linters.statix")
 local nixfmt = require("efmls-configs.formatters.nixfmt")
@@ -103,7 +106,7 @@ opts = {
   },
   settings = {
     languages = {
-      lua = { luacheck, stylua },
+      lua = { stylua },
       nix = { statix, nixfmt },
       python = { flake8, black },
     },
