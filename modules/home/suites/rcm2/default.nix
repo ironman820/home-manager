@@ -9,9 +9,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.shellAliases = {
-      "cover" = "coverage run && coverage xml && coverage html";
-    };
     programs.git.extraConfig.safe.directory = "/data/rcm";
   };
 }
