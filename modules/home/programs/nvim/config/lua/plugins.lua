@@ -128,4 +128,5 @@ return {
       "nvim-telescope/telescope-dap.nvim",
     },
   },
+  'anuvyklack/keymap-amend.nvim',
 }
