@@ -1,8 +1,4 @@
-{ options, pkgs, config, lib, inputs, ... }:
-let
-  inherit (lib) mkDefault;
-  inherit (lib.ironman) enabled;
-in
+_:
 {
   config = {
     home.shellAliases = {
