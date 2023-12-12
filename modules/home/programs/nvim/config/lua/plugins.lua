@@ -126,9 +126,10 @@ return {
       "mfussenegger/nvim-dap-python",
       "rcarriga/nvim-dap-ui",
       "nvim-telescope/telescope-dap.nvim",
+      "anuvyklack/keymap-amend.nvim",
     },
+    event = "VeryLazy",
   },
-  "anuvyklack/keymap-amend.nvim",
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
