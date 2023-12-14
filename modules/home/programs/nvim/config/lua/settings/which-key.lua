@@ -106,12 +106,13 @@ local mappings = {
     k = { "<C-w>k", "Move to upper window" },
     l = { "<C-w>l", "Move to right window" },
     o = { "<C-w>o", "Close [O]ther windows" },
-    q = { "<cmd>wqa!<CR>", "[Q]uit, saving open files" },
+    q = { "<cmd>TroubleClose<CR><cmd>qa!<CR>", "[Q]uit, without saving open files" },
     s = {
       name = "[S]plit",
       h = { "<cmd>split<cr>", "[H]orizontally" },
       v = { "<cmd>vsplit<cr>", "[V]ertically" },
     },
+    w = { "<cmd>TroubleClose<CR><cmd>wqa!<CR>", "Quit, [W]riting open files" },
   },
 }
 
