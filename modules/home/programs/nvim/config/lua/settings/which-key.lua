@@ -85,6 +85,9 @@ local mappings = {
     n = { "<cmd>new<cr>", "[N]ew" },
     s = { "<cmd>w<cr>", "[S]ave" },
   },
+  c = {
+    name = "[C]onnect to Database",
+  },
   d = {
     name = "[D]ebug",
   },
