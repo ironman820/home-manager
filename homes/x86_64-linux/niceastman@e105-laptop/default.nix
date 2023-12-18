@@ -21,6 +21,7 @@ in {
       };
       yb_keys.sopsFile = ./secrets/yb_keys.sops;
     };
+    gui-apps.hexchat = true;
     networking = enabled;
     programs = {
       neomutt = {

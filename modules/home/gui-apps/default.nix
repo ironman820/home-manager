@@ -6,6 +6,7 @@ let
 in {
   options.ironman.home.gui-apps = {
     enable = mkEnableOption "Enable the default settings?";
+    hexchat = mkEnableOption "Enable Hexchat";
   };
 
   config = mkIf cfg.enable {
@@ -28,6 +29,25 @@ in {
         virt-viewer
       ];
       sessionVariables = { BROWSER = "brave"; };
+    };
+    programs.hexchat = mkIf cfg.hexchat { enable = cfg.hexchat;
+      channels = {
+        irchighway = {
+          autojoin = [
+            "#ebooks"
+          ];
+          charset = "UTF-8 (Unicode)";
+          options = {
+            acceptInvalidSSLCertificates = true;
+            autoconnect = true;
+            bypassProxy = true;
+            forceSSL = false;
+          };
+          servers = [
+            "irc.irchighway.net"
+          ];
+        };
+      };
     };
   };
 }
