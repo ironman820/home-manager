@@ -4,6 +4,7 @@ let
 in
 {
   ironman.home = {
+    gui-apps.hexchat = true;
     networking = enabled;
     personal-apps = enabled;
     programs = {
