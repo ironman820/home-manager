@@ -19,6 +19,7 @@ in {
         pv
         qrencode
         restic
+        rclone
         ripgrep
         switchssh
         unzip
@@ -30,6 +31,7 @@ in {
         "df" = "duf";
         "ducks" =
           "du -chs * 2>/dev/null | sort -rh | head -11 && du -chs .* 2>/dev/null | sort -rh | head -11";
+        "gmount" = "rclone mount google:/ ~/Drive/";
       };
       stateVersion = "23.05";
     };

@@ -24,7 +24,7 @@ in {
         obs-studio
         putty
         remmina
-        steam
+        # steam
         telegram-desktop
         vlc
         virt-viewer

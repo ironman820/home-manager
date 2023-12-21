@@ -38,6 +38,10 @@
       flake = false;
       url = "github:catppuccin/tmux";
     };
+    cloak-nvim = {
+      flake = false;
+      url = "github:laytan/cloak.nvim";
+    };
     flake = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:snowfallorg/flake";
@@ -60,9 +64,21 @@
       flake = false;
       url = "github:chrisgrieser/cmp-nerdfont";
     };
+    nvim-conceal = {
+      flake = false;
+      url = "github:Jxstxs/conceal.nvim";
+    };
     nvim-undotree = {
       flake = false;
       url = "github:jiaoshijie/undotree";
+    };
+    obsidian-nvim = {
+      flake = false;
+      url = "github:epwalsh/obsidian.nvim";
+    };
+    one-small-step-for-vimkind = {
+      flake = false;
+      url = "github:jbyuki/one-small-step-for-vimkind";
     };
     ranger-devicons = {
       flake = false;
@@ -81,40 +97,39 @@
       url = "github:27medkamal/tmux-session-wizard";
     };
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    yanky-nvim = {
+      flake = false;
+      url = "github:gbprod/yanky.nvim";
+    };
   };
 
-  outputs = inputs: let
-    lib = inputs.snowfall-lib.mkLib {
-      inherit inputs;
-      src = ./.;
+  outputs = inputs:
+    let
+      lib = inputs.snowfall-lib.mkLib {
+        inherit inputs;
+        src = ./.;
 
-      snowfall = {
-        meta = {
-          name = "ironman";
-          title = "Ironman Home Config";
+        snowfall = {
+          meta = {
+            name = "ironman";
+            title = "Ironman Home Config";
+          };
+          namespace = "ironman";
         };
-        namespace = "ironman";
       };
-    };
-  in lib.mkFlake {
-    channels-config = {
-      allowUnfree = true;
-      permittedInsecurePackages = [
-        "openssl-1.1.1w"
+    in lib.mkFlake {
+      channels-config = {
+        allowUnfree = true;
+        permittedInsecurePackages = [ "openssl-1.1.1w" ];
+      };
+
+      homes.modules = with inputs; [ sops-nix.homeManagerModules.sops ];
+
+      overlays = with inputs; [
+        flake.overlays.default
+        blockyalarm.overlays."package/blockyalarm"
       ];
+
+      alias = { shells.default = "ironman-shell"; };
     };
-
-    homes.modules = with inputs; [
-      sops-nix.homeManagerModules.sops
-    ];
-
-    overlays = with inputs; [
-      flake.overlays.default
-      blockyalarm.overlays."package/blockyalarm"
-    ];
-
-    alias = {
-      shells.default = "ironman-shell";
-    };
-  };
 }

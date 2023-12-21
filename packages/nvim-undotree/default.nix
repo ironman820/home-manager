@@ -1,12 +1,9 @@
-{ lib
-, inputs
-, fetchFromGitHub
+{ inputs
 , pkgs
-, stdenv
 }:
 let
     inherit (pkgs.vimUtils) buildVimPlugin;
-in buildVimPlugin rec {
+in buildVimPlugin {
     name = "undotree";
     src = inputs.nvim-undotree;
 }

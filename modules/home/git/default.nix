@@ -22,7 +22,7 @@ in {
         lazygit
       ];
       sessionVariables = {
-        LG_CONFIG_FILE = "${configFolder}/config.yml,${configFolder}/themes/mocha/mocha-red.yml";
+        LG_CONFIG_FILE = "${configFolder}/config.yml,${configFolder}/themes/mocha/red.yml";
       };
     };
     programs.git = {
