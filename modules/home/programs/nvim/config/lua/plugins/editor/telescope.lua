@@ -25,6 +25,7 @@ map("<leader>fR", function()
   builtin.oldfiles({ cwd = vim.loop.cwd() })
 end, { desc = "Recent (cwd)" })
 -- git
+map("<leader>gb", builtin.git_branches, { desc = "branches" })
 map("<leader>gc", builtin.git_commits, { desc = "commits" })
 map("<leader>gs", builtin.git_status, { desc = "status" })
 -- search
