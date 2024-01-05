@@ -40,6 +40,7 @@ map("X", "zjzxzz", { mode = "n" })
 -- Only depend on `nvim-treesitter/queries/filetype/folds.scm`,
 -- performance and stability are better than `foldmethod=nvim_treesitter#foldexpr()`
 -- use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+---@diagnostic disable-next-line: missing-fields
 ufo.setup({
   provider_selector = function(_, _, _)
     return { "treesitter", "indent" }

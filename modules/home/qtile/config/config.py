@@ -1,3 +1,9 @@
+"""
+    Settings file for qtile
+
+    Functions:
+        autostart()
+"""
 import os
 import subprocess
 from libqtile import hook
@@ -19,14 +25,16 @@ from libqtile.widget.systray import Systray
 from libqtile.widget.wallpaper import Wallpaper
 from libqtile.widget.windowname import WindowName
 
+# pylint: disable=E0401,W0611
 from display import watch_display  # pyright: ignore[reportMissingImports]
-from settings.keys import keys, mod  # pyright: ignore # noqa: F401
-from settings.groups import groups  # pyright: ignore # noqa: F401
+from settings.keys import keys, mod  # pyright: ignore  # noqa: F401
+from settings.groups import groups  # pyright: ignore  # noqa: F401
 
 
 @hook.subscribe.startup_once
 def autostart():
     home = os.path.expanduser("~/.config/qtile/autostart.sh")
+    # pylint: disable=R1732
     subprocess.Popen([home])
 
 
@@ -46,12 +54,12 @@ layouts = [
     # layout.Zoomy(),
 ]
 
-widget_defaults = dict(
-    font="FiraCode Nerd Font Mono",
-    fontsize=16,
-    highlight_method="block",
-    padding=3,
-)
+widget_defaults = {
+    "font": "FiraCode Nerd Font Mono",
+    "fontsize": 16,
+    "highlight_method": "block",
+    "padding": 3,
+}
 
 extension_defaults = widget_defaults.copy()
 
@@ -129,6 +137,7 @@ reconfigure_screens = True
 # focus, should we respect this or not?
 auto_minimize = True
 
+# pylint: disable=W0511
 # XXX: Gasp! We're lying here. In fact, nobody really uses or cares about this
 # string besides java UI toolkits; you can see several discussions on the
 # mailing lists, GitHub issues, and other WM documentation that suggest setting

@@ -3,6 +3,10 @@ if not telescope_ok then
   return
 end
 telescope.load_extension("fzf")
+local has_aerial, _ = pcall(require, "aerial")
+if has_aerial then
+  telescope.load_extension("aerial")
+end
 local builtin = require("telescope.builtin")
 local utils = require("telescope.utils")
 local map = require("user-util").map
@@ -58,9 +62,10 @@ end, { desc = "Word (cwd)" })
 map("<leader>sW", function()
   builtin.grep_string({ cwd = false })
 end, { desc = "Selection (cwd)", mode = "v" })
-map("<leader>ss", function()
-  builtin.lsp_document_symbols({ symbols = require("user-util").get_kind_filter() })
-end, { desc = "Goto Symbol" })
+map("<leader>ss", "<cmd>Telescope aerial<cr>", { desc = "Goto Symbol" })
+-- map("<leader>ss", function()
+--   builtin.lsp_document_symbols({ symbols = require("user-util").get_kind_filter() })
+-- end, { desc = "Goto Symbol" })
 map("<leader>sS", function()
   builtin.lsp_dynamic_workspace_symbols({ symbols = require("user-util").get_kind_filter() })
 end, { desc = "Goto Symbol (Workspace)" })

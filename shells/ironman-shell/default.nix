@@ -1,22 +1,12 @@
 { pkgs, stdenv, ... }:
-  let
-    myPythonPackages = py:
-      with py; [
-        black
-        debugpy
-        flake8
-        qtile
-      ];
-  in
-stdenv.mkDerivation {
+let
+  myPythonPackages = py: with py; [ black debugpy flake8 pylint qtile ];
+  myPython = pkgs.python3.withPackages myPythonPackages;
+in stdenv.mkDerivation {
   name = "ironman-shell";
-  nativeBuildInputs = with pkgs; [
-    nix-index
-    nix-tree
-    (python3.withPackages myPythonPackages)
-  ];
+  nativeBuildInputs = with pkgs; [ nix-index nix-tree myPython pyright ];
 
-  # shellHook = ''
-  #   export NIX_PATH=nixpkgs=https://github.com/nixos/nixpkgs/archive/e516ffb.tar.gz
-  # '';
+  shellHook = ''
+    export PYTHON_ENV="${myPython}/bin"
+  '';
 }

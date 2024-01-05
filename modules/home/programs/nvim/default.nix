@@ -39,6 +39,7 @@ in {
           lua-language-server
           mercurial
           my_python
+          pyright
           nil
           nixfmt
           statix
@@ -46,6 +47,7 @@ in {
           taplo-lsp
         ]) ++ (with pkgs.luaPackages; [ luacheck ]);
         plugins = with pkgs.vimPlugins; [
+          aerial-nvim
           alpha-nvim
           barbecue-nvim
           bufferline-nvim
