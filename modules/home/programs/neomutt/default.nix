@@ -70,6 +70,7 @@ in {
         fim
         gettext
         isync
+        khal
         lieer
         lynx
         mutt-wizard
