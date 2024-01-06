@@ -16,21 +16,19 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [
-      flameshot
-      zathura
-    ];
-    xdg.configFile."qtile/autostart.sh".source =
-      writeShellScript "autostart.sh" ''
+    home.packages = with pkgs; [ flameshot zathura ];
+    xdg.configFile = {
+      "qtile/autostart.sh".source = writeShellScript "autostart.sh" ''
         ${cfg.screenSizeCommand}
         nm-applet &
       '';
-    xdg.configFile."qtile/config.py".source = mkOutOfStoreSymlink
-      "/home/${config.ironman.home.user.name}/.config/home-manager/modules/home/qtile/config/config.py";
-    xdg.configFile."qtile/display.py".text = ''
-      watch_display = "${cfg.backlightDisplay}"
-    '';
-    xdg.configFile."qtile/settings".source = mkOutOfStoreSymlink
-      "/home/${config.ironman.home.user.name}/.config/home-manager/modules/home/qtile/config/settings";
+      "qtile/config.py".source = mkOutOfStoreSymlink
+        "/home/${config.ironman.home.user.name}/.config/home-manager/modules/home/qtile/config/config.py";
+      "qtile/display.py".text = ''
+        watch_display = "${cfg.backlightDisplay}"
+      '';
+      "qtile/settings".source = mkOutOfStoreSymlink
+        "/home/${config.ironman.home.user.name}/.config/home-manager/modules/home/qtile/config/settings";
+    };
   };
 }

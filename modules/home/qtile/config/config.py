@@ -1,9 +1,3 @@
-"""
-    Settings file for qtile
-
-    Functions:
-        autostart()
-"""
 import os
 import subprocess
 from libqtile import hook
