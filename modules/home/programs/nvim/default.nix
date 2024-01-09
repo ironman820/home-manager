@@ -12,7 +12,7 @@ let
   modFolder =
     "${config.home.homeDirectory}/.config/home-manager/modules/home/programs/nvim";
   my_python = pkgs.python3.withPackages my_python_packages;
-  my_python_packages = py: (with py; [ autopep8 black pylint pynvim qtile ]);
+  my_python_packages = py: (with py; [ autopep8 black pylint pynvim ]);
 in {
   options.ironman.home.programs.nvim = {
     enable = mkBoolOpt true "Install NeoVim";
