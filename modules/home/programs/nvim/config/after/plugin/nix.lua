@@ -75,7 +75,7 @@ ls.add_snippets("nix", {
     "nixoverlay",
     fmt(
       [[
-{{ channels, .. }}:
+{{ channels, ... }}:
 final: prev:
 {{
 {}
