@@ -15,6 +15,7 @@ local opts = {
   formatters_by_ft = {
     lua = { "stylua" },
     nix = { "nixfmt" },
+    php = { "php_cs_fixer" },
     python = { "autopep8", "black" },
   },
   -- The options you set here will be merged with the builtin formatters.
