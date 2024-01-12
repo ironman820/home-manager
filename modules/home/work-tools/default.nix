@@ -1,24 +1,23 @@
-{ options, pkgs, config, lib, inputs, ... }:
+{ pkgs, config, lib, ... }:
 let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.ironman.home.work-tools;
-in
-{
+in {
   options.ironman.home.work-tools = {
     enable = mkEnableOption "Enable the Work Machine Tools";
   };
 
   config = mkIf cfg.enable {
     home = {
-      packages = (with pkgs; [
+      packages = with pkgs; [
         barrier
         dia
         # glocom
-        # qgis
+        qgis
         thunderbird
         wireshark
         zoom-us
-      ]);
+      ];
     };
   };
 }
