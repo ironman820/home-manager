@@ -54,8 +54,8 @@ keys = [
                 lazy.spawn(
                     " ".join(
                         [
-                            "xrandr --output eDP-1 --mode 1920x1080 --primary",
-                            "--output HDMI-1 --mode 1920x1080 --same-as eDP-1",
+                            "xrandr --output eDP-1 --mode 1280x720 --primary",
+                            "--output HDMI-1 --mode 1280x720 --same-as eDP-1",
                         ]
                     )
                 ),
