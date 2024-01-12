@@ -35,6 +35,11 @@ in {
       };
       stateVersion = "23.05";
     };
+    manual = {
+      html.enable = false;
+      manpages.enable = false;
+      json.enable = false;
+    };
     programs = {
       atuin = {
         enable = true;
