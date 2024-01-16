@@ -2,6 +2,7 @@
 let
   inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit (lib) mkEnableOption mkIf;
+  inherit (lib.ironman) enabled;
   cfg = config.ironman.home.gui-apps;
 in {
   options.ironman.home.gui-apps = {
@@ -48,6 +49,10 @@ in {
           servers = [ "irc.irchighway.net" ];
         };
       };
+    };
+    services.udiskie = {
+      enable = true;
+      tray = "never";
     };
   };
 }
