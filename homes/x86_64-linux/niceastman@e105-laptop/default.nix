@@ -4,9 +4,7 @@ let
   sopsFile = ./secrets/work-keys.yaml;
   sshFolder = "${config.home.homeDirectory}/.ssh";
 in {
-  home = {
-    packages = with pkgs; [ ironman.blockyalarm steam-run ];
-  };
+  home = { packages = with pkgs; [ ironman.blockyalarm steam-run ]; };
   ironman.home = {
     sops.secrets = {
       github_home = { inherit sopsFile; };

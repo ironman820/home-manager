@@ -1,10 +1,9 @@
 { config, lib, ... }:
 let
   inherit (lib) mkEnableOption mkIf;
-  inherit (lib.ironman) enabled;
+  inherit (lib.ironman) disabled enabled;
   cfg = config.ironman.home.suites.workstation;
-in
-{
+in {
   options.ironman.home.suites.workstation = {
     enable = mkEnableOption "Enable the default settings?";
   };
@@ -15,6 +14,7 @@ in
       qtile = enabled;
       rofi = enabled;
       sync = enabled;
+      tmux = disabled;
       video-tools = enabled;
       virtual.host = enabled;
       yubikey = enabled;
