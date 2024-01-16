@@ -16,6 +16,7 @@ in {
       packages = with pkgs; [
         brave
         blender
+        calibre
         firefox
         floorp
         gimp
