@@ -83,7 +83,20 @@ in {
     };
     programs.neomutt = enabled;
     xdg.configFile = {
-      "mutt/mailcap".source = mkOutOfStoreSymlink "${modFolder}/mailcap";
+      "mutt/mailcap".text = ''
+        text/plain; $EDITOR %s ;
+        text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump -width=1024 %s; nametemplate=%s.html; copiousoutput;
+        text/html; ${pkgs.mutt-wizard}/lib/mutt-wizard/openfile %s ; nametemplate=%s.html
+        image/*; fim %s ;
+        image/*; ${pkgs.mutt-wizard}/lib/mutt-wizard/openfile %s ;
+        video/*; setsid mpv --quiet %s &; copiousoutput
+        audio/*; vlc %s ;
+        application/pdf; zathura %s ;
+        application/pdf; ${pkgs.mutt-wizard}/lib/mutt-wizard/openfile %s ;
+        application/pgp-encrypted; gpg -d '%s'; copiousoutput;
+        application/pgp-keys; gpg --import '%s'; copiousoutput;
+        application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; ${pkgs.libreoffice-fresh}/lib/libreoffice/program/soffice %s ;
+      '';
       "mutt/muttrc".source = mkOutOfStoreSymlink "${modFolder}/muttrc";
       "mutt/mutt-wizard.muttrc".source =
         mkOutOfStoreSymlink "${modFolder}/mutt-wizard.muttrc";
