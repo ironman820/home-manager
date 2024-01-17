@@ -14,7 +14,6 @@ in {
       qtile = enabled;
       rofi = enabled;
       sync = enabled;
-      tmux = disabled;
       video-tools = enabled;
       virtual.host = enabled;
       yubikey = enabled;
