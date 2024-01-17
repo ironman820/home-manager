@@ -113,7 +113,6 @@ in {
           trouble-nvim
           nvim-ts-autotag
           nvim-ts-context-commentstring
-          vim-tmux-navigator
           nvim-ufo
           nvim-undotree
           nvim-web-devicons

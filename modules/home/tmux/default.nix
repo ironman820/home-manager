@@ -1,10 +1,12 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf;
   inherit (lib.ironman) mkBoolOpt mkOpt;
   inherit (lib.types) int lines str;
-  inherit (pkgs.tmuxPlugins)
-    catppuccin-tmux sensible tmux-session-wizard vim-tmux-navigator yank;
 
   cfg = config.ironman.home.tmux;
 in {
@@ -12,27 +14,37 @@ in {
     enable = mkBoolOpt true "Setup tmux";
     baseIndex = mkOpt int 1 "Base number for windows";
     clock24 = mkBoolOpt true "Use a 24 hour clock";
+    customPaneNavigationAndResize = mkBoolOpt true "Use hjkl for navigation";
+    escapeTime = mkOpt int 0 "Escape time";
     extraConfig = mkOpt lines "" "Extra configuration options";
     historyLimit =
-      mkOpt int 10000 "The number of lines to keep in scrollback history";
+      mkOpt int 1000000 "The number of lines to keep in scrollback history";
     keyMode = mkOpt str "vi" "Key style used for control";
     secureSocket = mkBoolOpt false "Use a secure socket to connect.";
     shortcut =
       mkOpt str "Space" "Default leader key that will be paired with <Ctrl>";
+    terminal = mkOpt str "screen-256color" "Default terminal config";
   };
 
   config = mkIf cfg.enable {
     ironman.home.tmux = {
       extraConfig = ''
+        source-file ~/.config/tmux/tmux.reset.conf
+        set-option -g terminal-overrides ',xterm-256color:RGB'
+
+        set -g detach-on-destroy off
+        set -g renumber-windows on
+        set -g set-clipboard on
+        set -g status-position top
+        # set -g pane-border-status on
+
         bind-key -T copy-mode-vi v send-keys -X begin-selection
         bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
         bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
         set-option -sa terminal-features ',xterm-kitty:RGB'
-        set-option -g detach-on-destroy off
-        set-option -g renumber-windows on
       '';
     };
-    home.packages = with pkgs.ironman; [ t ];
+    home.packages = with pkgs.ironman; [t];
     programs = {
       bash.bashrcExtra = ''
         if [[ -z "$TMUX" ]]; then
@@ -40,11 +52,21 @@ in {
         fi
       '';
       tmux = {
-        inherit (cfg)
-          baseIndex clock24 extraConfig historyLimit keyMode secureSocket
-          shortcut;
+        inherit
+          (cfg)
+          baseIndex
+          clock24
+          customPaneNavigationAndResize
+          escapeTime
+          extraConfig
+          historyLimit
+          keyMode
+          secureSocket
+          shortcut
+          terminal
+          ;
         enable = true;
-        plugins = [
+        plugins = with pkgs.tmuxPlugins; [
           {
             plugin = catppuccin-tmux;
             extraConfig = ''
@@ -68,30 +90,70 @@ in {
               set -g @catppuccin_directory_text "#{pane_current_path}"
             '';
           }
-          sensible
-          yank
-          tmux-session-wizard
+          cheat-sh
           {
-            plugin = vim-tmux-navigator;
+            plugin = continuum;
             extraConfig = ''
-              # Smart pane switching with awareness of Vim splits.
-              # Added no-wrap key settings and filtered out ssh sessions.
-              # See: https://github.com/christoomey/vim-tmux-navigator
-              is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-                  | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|fzf|ssh|mosh?)(diff)?$'"
-              bind-key -n 'C-h' if-shell "$is_vim" { send-keys C-h } { if-shell -F '#{pane_at_left}'   {} { select-pane -L } }
-              bind-key -n 'C-j' if-shell "$is_vim" { send-keys C-j } { if-shell -F '#{pane_at_bottom}' {} { select-pane -D } }
-              bind-key -n 'C-k' if-shell "$is_vim" { send-keys C-k } { if-shell -F '#{pane_at_top}'    {} { select-pane -U } }
-              bind-key -n 'C-l' if-shell "$is_vim" { send-keys C-l } { if-shell -F '#{pane_at_right}'  {} { select-pane -R } }
-
-              bind-key -T copy-mode-vi 'C-h' if-shell -F '#{pane_at_left}'   {} { select-pane -L }
-              bind-key -T copy-mode-vi 'C-j' if-shell -F '#{pane_at_bottom}' {} { select-pane -D }
-              bind-key -T copy-mode-vi 'C-k' if-shell -F '#{pane_at_top}'    {} { select-pane -U }
-              bind-key -T copy-mode-vi 'C-l' if-shell -F '#{pane_at_right}'  {} { select-pane -R }
+              set -g @continuum-restore 'on'
             '';
           }
+          {
+            plugin = resurrect;
+            extraConfig = ''
+              set -g @resurrect-strategy-nvim 'session'
+            '';
+          }
+          sensible
+          yank
+          {
+            plugin = tmux-fzf-url;
+            extraConfig = ''
+              set -g @fzf-url-fzf-options '-p 60%,30% --prompt="   " --border-label=" Open URL "'
+              set -g @fzf-url-history-limit '2000'
+            '';
+          }
+          tmux-session-wizard
         ];
       };
     };
+    xdg.configFile."tmux/tmux.reset.conf".text = ''
+      # First remove *all* keybindings
+      # unbind-key -a
+      # Now reinsert all the regular tmux keys
+      # bind ^X lock-server
+      bind C-c new-window
+      bind C-d detach
+      # bind * list-clients
+
+      bind H previous-window
+      bind L next-window
+
+      # bind r command-prompt "rename-window %%"
+      # bind R source-file ~/.config/tmux/tmux.conf
+      # bind ^A last-window
+      # bind ^W list-windows
+      bind w list-windows
+      bind z resize-pane -Z
+      # bind ^L refresh-client
+      bind C-r refresh-client
+      # bind | split-window
+      # bind s split-window -v -c "#{pane_current_path}"
+      # bind v split-window -h -c "#{pane_current_path}"
+      # bind '"' choose-window
+      bind h select-pane -L
+      bind j select-pane -D
+      bind k select-pane -U
+      bind l select-pane -R
+      # bind -r -T prefix , resize-pane -L 20
+      # bind -r -T prefix . resize-pane -R 20
+      # bind -r -T prefix - resize-pane -D 7
+      # bind -r -T prefix = resize-pane -U 7
+      bind : command-prompt
+      bind * setw synchronize-panes
+      # bind P set pane-border-status
+      # bind c kill-pane
+      # bind x swap-pane -D
+      # bind S choose-session
+      bind-key -T copy-mode-vi v send-keys -X begin-selection '';
   };
 }

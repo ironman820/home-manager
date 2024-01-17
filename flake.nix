@@ -92,6 +92,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
       url = "https://flakehub.com/f/Mic92/sops-nix/0.1.*.tar.gz";
     };
+    tmux-cheat-sh = {
+      flake = false;
+      url = "github:ironman820/tmux-cheat-sh";
+    };
+    tmux-fzf-url = {
+      flake = false;
+      url = "github:wfxr/tmux-fzf-url";
+    };
     tmux-session-wizard = {
       flake = false;
       url = "github:27medkamal/tmux-session-wizard";
