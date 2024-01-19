@@ -1,6 +1,5 @@
-{ options, pkgs, config, lib, inputs, ... }:
+{ pkgs, config, lib, ... }:
 let
-  inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit (lib) mkIf;
   inherit (lib.ironman) mkBoolOpt;
   cfg = config.ironman.home.man;
@@ -11,10 +10,8 @@ in {
 
   config = mkIf cfg.enable {
     home = {
-      file.".config/tealdeer".source = mkOutOfStoreSymlink "/home/${config.ironman.home.user.name}/.config/home-manager/modules/home/man/config";
-      packages = with pkgs; [
-        tealdeer
-      ];
+      file.".config/tealdeer".source = ./config;
+      packages = with pkgs; [ tealdeer ];
     };
   };
 }

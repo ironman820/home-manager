@@ -1,6 +1,5 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit (lib) mkEnableOption mkIf;
   inherit (lib.types) str;
   inherit (lib.ironman) mkOpt;
@@ -22,13 +21,11 @@ in {
         ${cfg.screenSizeCommand}
         nm-applet &
       '';
-      "qtile/config.py".source = mkOutOfStoreSymlink
-        "/home/${config.ironman.home.user.name}/.config/home-manager/modules/home/qtile/config/config.py";
+      "qtile/config.py".source = ./config/config.py;
       "qtile/display.py".text = ''
         watch_display = "${cfg.backlightDisplay}"
       '';
-      "qtile/settings".source = mkOutOfStoreSymlink
-        "/home/${config.ironman.home.user.name}/.config/home-manager/modules/home/qtile/config/settings";
+      "qtile/settings".source = ./config/settings;
     };
   };
 }

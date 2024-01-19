@@ -1,12 +1,10 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit (lib) mkIf;
   inherit (lib.ironman) enabled mkBoolOpt;
 
   cfg = config.ironman.home.git;
   configFolder = "${config.xdg.configHome}/lazygit";
-  modFolder = "${config.xdg.configHome}/home-manager/modules/home/git/";
 in {
   options.ironman.home.git = { enable = mkBoolOpt true "Setup git"; };
 
@@ -52,8 +50,7 @@ in {
       };
     };
     xdg.configFile = {
-      "lazygit/config.yml".source =
-        mkOutOfStoreSymlink "${modFolder}/lazygit.yml";
+      "lazygit/config.yml".source = ./lazygit.yml;
       "lazygit/themes".source = pkgs.catppuccin-lazygit;
     };
   };

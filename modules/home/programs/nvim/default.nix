@@ -1,6 +1,5 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit (lib) mkIf;
   inherit (lib.ironman) mkBoolOpt mkOpt;
   inherit (lib.types) lines;
@@ -9,8 +8,6 @@ let
   initLua = ''
     require("startup")
   '';
-  modFolder =
-    "${config.home.homeDirectory}/.config/home-manager/modules/home/programs/nvim";
   my_python = pkgs.python3.withPackages my_python_packages;
   my_python_packages = py: (with py; [ autopep8 black pylint pynvim ]);
 in {
@@ -120,9 +117,8 @@ in {
       };
     };
     xdg.configFile = {
-      "nvim/lua".source = mkOutOfStoreSymlink "${modFolder}/config/lua";
-      "nvim/after/plugin".source =
-        mkOutOfStoreSymlink "${modFolder}/config/after/plugin";
+      "nvim/lua".source = ./config/lua;
+      "nvim/after/plugin".source = ./config/after/plugin;
     };
   };
 }

@@ -14,7 +14,6 @@ in {
         dia
         # glocom
         # qgis
-        thunderbird
         wireshark
         zoom-us
       ];

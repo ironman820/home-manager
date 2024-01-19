@@ -1,8 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit (lib) mkEnableOption mkIf;
-  inherit (lib.ironman) enabled;
   cfg = config.ironman.home.gui-apps;
 in {
   options.ironman.home.gui-apps = {
@@ -12,13 +10,11 @@ in {
 
   config = mkIf cfg.enable {
     home = {
-      file."putty/sessions/FS Switch".source = mkOutOfStoreSymlink
-        "${config.xdg.configHome}/home-manager/modules/home/gui-apps/config/putty/FS%20Switch";
+      file."putty/sessions/FS Switch".source = ./config/putty/${"FS%20Switch"};
       packages = with pkgs; [
         brave
         blender
         calibre
-        firefox
         floorp
         gimp
         google-chrome

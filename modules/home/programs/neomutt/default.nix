@@ -1,12 +1,9 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit (lib) mkEnableOption mkIf mkMerge;
   inherit (lib.ironman) enabled;
 
   cfg = config.ironman.home.programs.neomutt;
-  modFolder =
-    "${config.xdg.configHome}/home-manager/modules/home/programs/neomutt";
   configFolder = "${config.xdg.configHome}/mutt";
 in {
   options.ironman.home.programs.neomutt = {
@@ -97,16 +94,12 @@ in {
         application/pgp-keys; gpg --import '%s'; copiousoutput;
         application/vnd.openxmlformats-officedocument.spreadsheetml.sheet; ${pkgs.libreoffice-fresh}/lib/libreoffice/program/soffice %s ;
       '';
-      "mutt/muttrc".source = mkOutOfStoreSymlink "${modFolder}/muttrc";
-      "mutt/mutt-wizard.muttrc".source =
-        mkOutOfStoreSymlink "${modFolder}/mutt-wizard.muttrc";
-      "mutt/personal.mailboxes".source =
-        mkOutOfStoreSymlink "${modFolder}/personal.mailboxes";
-      "mutt/switch.muttrc".source =
-        mkOutOfStoreSymlink "${modFolder}/switch.muttrc";
+      "mutt/muttrc".source = ./muttrc;
+      "mutt/mutt-wizard.muttrc".source = ./mutt-wizard.muttrc;
+      "mutt/personal.mailboxes".source = ./personal.mailboxes;
+      "mutt/switch.muttrc".source = ./switch.muttrc;
       "mutt/theme".source = "${pkgs.catppuccin-neomutt}/catppuccin-neomutt";
-      "mutt/work.mailboxes".source =
-        mkOutOfStoreSymlink "${modFolder}/work.mailboxes";
+      "mutt/work.mailboxes".source = ./work.mailboxes;
     };
   });
 }

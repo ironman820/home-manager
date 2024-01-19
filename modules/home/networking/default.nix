@@ -1,6 +1,5 @@
-{ config, inputs, lib, options, pkgs, ... }:
+{ config, lib, ... }:
 let
-  inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit (lib) mkEnableOption mkIf;
 
   cfg = config.ironman.home.networking;
@@ -10,6 +9,6 @@ in {
   };
 
   config = mkIf cfg.enable {
-    home.file.".config/networkmanager-dmenu/config.ini".source = mkOutOfStoreSymlink "${config.home.homeDirectory}/.config/home-manager/modules/home/networking/nm-dmenu.ini";
+    home.file.".config/networkmanager-dmenu/config.ini".source = ./nm-dmenu.ini;
   };
 }
