@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf;
   inherit (lib.ironman) mkBoolOpt mkOpt;
   inherit (lib.types) lines;
@@ -9,7 +13,7 @@ let
     require("startup")
   '';
   my_python = pkgs.python3.withPackages my_python_packages;
-  my_python_packages = py: (with py; [ autopep8 black pylint pynvim ]);
+  my_python_packages = py: (with py; [autopep8 black debugpy isort mypy pylint pynvim]);
 in {
   options.ironman.home.programs.nvim = {
     enable = mkBoolOpt true "Install NeoVim";
@@ -27,22 +31,25 @@ in {
       neovim = mkIf cfg.enable {
         inherit (cfg) enable extraLuaConfig;
         defaultEditor = true;
-        extraPackages = (with pkgs; [
-          fd
-          ripgrep
-          tree-sitter
-          xclip
-          efm-langserver
-          lua-language-server
-          mercurial
-          my_python
-          pyright
-          nil
-          nixfmt
-          statix
-          stylua
-          taplo-lsp
-        ]) ++ (with pkgs.luaPackages; [ luacheck ]);
+        extraPackages =
+          (with pkgs; [
+            alejandra
+            fd
+            ripgrep
+            tree-sitter
+            xclip
+            efm-langserver
+            lua-language-server
+            mercurial
+            my_python
+            pyright
+            nil
+            nixfmt
+            statix
+            stylua
+            taplo-lsp
+          ])
+          ++ (with pkgs.luaPackages; [luacheck]);
         plugins = with pkgs.vimPlugins; [
           aerial-nvim
           alpha-nvim
@@ -64,15 +71,18 @@ in {
           vim-dadbod-completion
           vim-dadbod-ui
           nvim-dap
+          nvim-dap-python
           nvim-dap-ui
           nvim-dap-virtual-text
           diffview-nvim
           dressing-nvim
           friendly-snippets
+          git-worktree-nvim
           gitsigns-nvim
           hop-nvim
           vim-illuminate
           indent-blankline-nvim
+          lazygit-nvim
           nvim-lint
           nvim-lspconfig
           lualine-nvim

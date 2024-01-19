@@ -1,19 +1,25 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkIf;
   inherit (lib.ironman) enabled mkBoolOpt;
 
   cfg = config.ironman.home.git;
   configFolder = "${config.xdg.configHome}/lazygit";
 in {
-  options.ironman.home.git = { enable = mkBoolOpt true "Setup git"; };
+  options.ironman.home.git = {enable = mkBoolOpt true "Setup git";};
 
   config = mkIf cfg.enable {
     home = {
-      packages = with pkgs; [ git git-filter-repo github-cli glab lazygit ];
+      packages = with pkgs; [git git-filter-repo github-cli glab lazygit];
       sessionVariables = {
-        LG_CONFIG_FILE =
-          "${configFolder}/config.yml,${configFolder}/themes/mocha/red.yml";
+        LG_CONFIG_FILE = "${configFolder}/config.yml,${configFolder}/themes/mocha/red.yml";
+      };
+      shellAliases = {
+        lg = "lazygit";
       };
     };
     programs = {
@@ -28,8 +34,7 @@ in {
         aliases = {
           pushall = "!git remote | xargs -L1 git push --all";
           graph = "log --decorate --oneline --graph";
-          add-nowhitespace =
-            "!git diff -U0 -w --no-color | git apply --cached --ignore-whitespace --undiff-zero -";
+          add-nowhitespace = "!git diff -U0 -w --no-color | git apply --cached --ignore-whitespace --undiff-zero -";
         };
         diff-so-fancy = enabled;
         enable = true;
@@ -39,7 +44,7 @@ in {
           gpg.format = "ssh";
           merge.tool = "vimdiff";
         };
-        ignores = [ ".direnv" "result" ];
+        ignores = [".direnv" "result"];
         lfs = enabled;
         signing = {
           key = "~/.ssh/github";

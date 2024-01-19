@@ -55,6 +55,10 @@ local opts = {
     },
   },
   sorting = defaults.sorting,
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
 }
 for _, source in ipairs(opts.sources) do
   source.group_index = source.group_index or 1
