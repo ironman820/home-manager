@@ -44,22 +44,22 @@
     };
     flake = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:snowfallorg/flake";
+      url = "https://flakehub.com/f/snowfallorg/flake/1.*.tar.gz";
     };
     home-manager = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "https://flakehub.com/f/nix-community/home-manager/0.2311.*.tar.gz";
     };
     nix-ld = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "github:mic92/nix-ld";
     };
-    nixos-hardware.url = "github:nixos/nixos-hardware";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixos-hardware.url = "https://flakehub.com/f/NixOS/nixos-hardware/0.1.*.tar.gz";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/*.tar.gz";
     # acc5f7b - IcedTea v8 Stable
-    nixpkgs-acc5f7b.url = "github:nixos/nixpkgs/acc5f7b";
+    nixpkgs-acc5f7b.url = "https://flakehub.com/f/NixOS/nixpkgs/=0.2105.296223.tar.gz";
     # ba45a55 - The last stable update of PHP 7.4
-    nixpkgs-ba45a55.url = "github:nixos/nixpkgs/ba45a55";
+    nixpkgs-ba45a55.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2205.384653.tar.gz";
     nvim-cmp-nerdfont = {
       flake = false;
       url = "github:chrisgrieser/cmp-nerdfont";
@@ -86,50 +86,50 @@
     };
     snowfall-lib = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:snowfallorg/lib";
+      url = "https://flakehub.com/f/snowfallorg/lib/2.*.tar.gz";
     };
     sops-nix = {
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "github:mic92/sops-nix";
+      url = "https://flakehub.com/f/Mic92/sops-nix/0.1.*.tar.gz";
     };
     tmux-session-wizard = {
       flake = false;
       url = "github:27medkamal/tmux-session-wizard";
     };
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    unstable.url = "https://flakehub.com/f/NixOS/nixpkgs/0.1.0.tar.gz";
     yanky-nvim = {
       flake = false;
       url = "github:gbprod/yanky.nvim";
     };
   };
 
-  outputs = inputs:
-    let
-      lib = inputs.snowfall-lib.mkLib {
-        inherit inputs;
-        src = ./.;
+  outputs = inputs: let
+    lib = inputs.snowfall-lib.mkLib {
+      inherit inputs;
+      src = ./.;
 
-        snowfall = {
-          meta = {
-            name = "ironman";
-            title = "Ironman Home Config";
-          };
-          namespace = "ironman";
+      snowfall = {
+        meta = {
+          name = "ironman";
+          title = "Ironman Home Config";
         };
+        namespace = "ironman";
       };
-    in lib.mkFlake {
+    };
+  in
+    lib.mkFlake {
       channels-config = {
         allowUnfree = true;
-        permittedInsecurePackages = [ "openssl-1.1.1w" ];
+        permittedInsecurePackages = ["openssl-1.1.1w"];
       };
 
-      homes.modules = with inputs; [ sops-nix.homeManagerModules.sops ];
+      homes.modules = with inputs; [sops-nix.homeManagerModules.sops];
 
       overlays = with inputs; [
         flake.overlays.default
         blockyalarm.overlays."package/blockyalarm"
       ];
 
-      alias = { shells.default = "ironman-shell"; };
+      alias = {shells.default = "ironman-shell";};
     };
 }
