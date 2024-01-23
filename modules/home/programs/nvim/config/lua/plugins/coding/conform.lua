@@ -15,7 +15,7 @@ local opts = {
   formatters_by_ft = {
     lua = { "stylua" },
     nix = { "alejandra" },
-    php = { "php_cs_fixer" },
+    php = { "phpcbf", "php_cs_fixer" },
     python = { "isort", "black" },
   },
   -- The options you set here will be merged with the builtin formatters.

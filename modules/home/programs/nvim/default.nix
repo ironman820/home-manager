@@ -77,12 +77,12 @@ in {
           diffview-nvim
           dressing-nvim
           friendly-snippets
-          git-worktree-nvim
+          # git-worktree-nvim
           gitsigns-nvim
           hop-nvim
           vim-illuminate
           indent-blankline-nvim
-          lazygit-nvim
+          # lazygit-nvim
           nvim-lint
           nvim-lspconfig
           lualine-nvim
@@ -91,9 +91,9 @@ in {
           nvim-navic
           neoconf-nvim
           neodev-nvim
-          neogit
+          # neogit
           neo-tree-nvim
-          noice-nvim
+          # noice-nvim
           nvim-notify
           nui-nvim
           obsidian-nvim

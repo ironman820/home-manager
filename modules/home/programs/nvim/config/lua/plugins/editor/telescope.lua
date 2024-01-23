@@ -89,13 +89,13 @@ local find_files_with_hidden = function()
   telescope.find_files({ hidden = true, default_text = line })
 end
 
-local has_worktree, _ = pcall(require, "git-worktree")
-if has_worktree then
-  telescope.load_extension("git_worktree")
-  local worktree = require("telescope").extensions.git_worktree
-  map("<leader>gwl", worktree.git_worktrees, { desc = "List Worktrees" })
-  map("<leader>gwc", worktree.create_git_worktree, { desc = "Create Worktrees" })
-end
+-- local has_worktree, _ = pcall(require, "git-worktree")
+-- if has_worktree then
+--   telescope.load_extension("git_worktree")
+--   local worktree = require("telescope").extensions.git_worktree
+--   map("<leader>gwl", worktree.git_worktrees, { desc = "List Worktrees" })
+--   map("<leader>gwc", worktree.create_git_worktree, { desc = "Create Worktrees" })
+-- end
 
 telescope.setup({
   defaults = {

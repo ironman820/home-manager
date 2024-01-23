@@ -13,10 +13,10 @@ rainbow_setup.setup({
     [""] = "rainbow-delimiters",
     lua = "rainbow-blocks",
   },
-  priority = {
-    [""] = 110,
-    lua = 210,
-  },
+  -- priority = {
+  --   [""] = 110,
+  --   lua = 210,
+  -- },
   highlight = {
     "RainbowDelimiterRed",
     "RainbowDelimiterYellow",

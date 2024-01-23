@@ -124,6 +124,7 @@ local opts = {
     psalm = {
       cmd = { "psalm", "--language-server" },
       mason = false,
+      root_dir = lspconfig.util.root_pattern(".git"),
       settings = {},
     },
     taplo = {
