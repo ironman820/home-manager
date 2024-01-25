@@ -1,5 +1,9 @@
-{ pkgs, config, lib, ... }:
-let
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}: let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.ironman.home.work-tools;
 in {
@@ -13,7 +17,7 @@ in {
         barrier
         dia
         # glocom
-        # qgis
+        qgis
         wireshark
         zoom-us
       ];
