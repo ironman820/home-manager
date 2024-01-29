@@ -1,5 +1,9 @@
-{ inputs, lib, pkgs, ... }:
-let
+{
+  inputs,
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (builtins) fromTOML readFile;
   inherit (lib.ironman) enabled;
 in {
@@ -10,6 +14,7 @@ in {
         duf
         eltclsh
         fzf
+        idracclient
         inetutils
         jq
         neofetch
@@ -26,11 +31,10 @@ in {
         yq
         zip
       ];
-      sessionPath = [ "$HOME/bin" "$HOME/.local/bin" ];
+      sessionPath = ["$HOME/bin" "$HOME/.local/bin"];
       shellAliases = {
         "df" = "duf";
-        "ducks" =
-          "du -chs * 2>/dev/null | sort -rh | head -11 && du -chs .* 2>/dev/null | sort -rh | head -11";
+        "ducks" = "du -chs * 2>/dev/null | sort -rh | head -11 && du -chs .* 2>/dev/null | sort -rh | head -11";
         "gmount" = "rclone mount google:/ ~/Drive/";
       };
       stateVersion = "23.05";
@@ -43,7 +47,7 @@ in {
     programs = {
       atuin = {
         enable = true;
-        flags = [ "--disable-up-arrow" ];
+        flags = ["--disable-up-arrow"];
       };
       bash = {
         enable = true;
@@ -55,7 +59,7 @@ in {
       eza = {
         enable = true;
         enableAliases = true;
-        extraOptions = [ "--group-directories-first" "--header" ];
+        extraOptions = ["--group-directories-first" "--header"];
         git = true;
         icons = true;
       };
@@ -65,8 +69,7 @@ in {
           personal-cipher-preferences = "AES256 AES192 AES";
           personal-digest-preferences = "SHA512 SHA384 SHA256";
           personal-compress-preferences = "ZLIB BZIP2 ZIP Uncompressed";
-          default-preference-list =
-            "SHA512 SHA384 SHA256 AES256 AES192 AES ZLIB BZIP2 ZIP Uncompressed";
+          default-preference-list = "SHA512 SHA384 SHA256 AES256 AES192 AES ZLIB BZIP2 ZIP Uncompressed";
           cert-digest-algo = "SHA512";
           s2k-digest-algo = "SHA512";
           s2k-cipher-algo = "AES256";
@@ -89,10 +92,12 @@ in {
       starship = {
         enable = true;
         enableBashIntegration = true;
-        settings = {
-          format = "$all";
-          palette = "catppuccin_mocha";
-        } // fromTOML
+        settings =
+          {
+            format = "$all";
+            palette = "catppuccin_mocha";
+          }
+          // fromTOML
           (readFile "${inputs.catppuccin-starship}/palettes/mocha.toml");
       };
       zoxide = enabled;
