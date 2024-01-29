@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkEnableOption mkIf mkMerge;
   inherit (lib.ironman) enabled;
 
@@ -12,7 +16,8 @@ in {
     workEmail = mkEnableOption "Setup Work Email";
   };
 
-  config = mkIf cfg.enable (let sopsFile = ./secrets/neomutt.yaml;
+  config = mkIf cfg.enable (let
+    sopsFile = ./secrets/neomutt.yaml;
   in {
     ironman.home.sops.secrets = mkMerge [
       {
@@ -76,11 +81,12 @@ in {
         pass
         urlview
       ];
-      shellAliases = { mail = "neomutt"; };
+      shellAliases = {mail = "neomutt";};
     };
     programs.neomutt = enabled;
     xdg.configFile = {
       "mutt/mailcap".text = ''
+        text/csv; ${pkgs.libreoffice-fresh}/lib/libreoffice/program/soffice %s ;
         text/plain; $EDITOR %s ;
         text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump -width=1024 %s; nametemplate=%s.html; copiousoutput;
         text/html; ${pkgs.mutt-wizard}/lib/mutt-wizard/openfile %s ; nametemplate=%s.html
