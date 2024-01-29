@@ -1,11 +1,8 @@
-{ channels, ... }:
-final: prev:
-let
+{channels, ...}: final: prev: let
   inherit (prev.lib.lists) remove;
   inherit (prev) python3 python311;
-in
-{
+in {
   pyright = prev.pyright.override (old: {
-      buildInputs = (remove python311 (remove python3 old.buildInputs));
+    buildInputs = remove python311 (remove python3 old.buildInputs);
   });
 }
