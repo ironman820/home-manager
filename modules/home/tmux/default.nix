@@ -38,11 +38,11 @@ in {
         set -g set-clipboard on
         set -g status-position top
 
-        # bind-key
         bind-key -T copy-mode-vi v send-keys -X begin-selection
         bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
         bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
         set-option -sa terminal-features ',xterm-kitty:RGB'
+        bind-key -T prefix g display-popup -E -w 95% -h 95% -d '#{pane_current_path}' lazygit
       '';
     };
     home.packages = with pkgs.ironman; [t];
