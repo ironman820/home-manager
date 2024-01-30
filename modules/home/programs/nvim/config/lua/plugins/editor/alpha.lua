@@ -43,6 +43,7 @@ dashboard.section.buttons.val = {
   dashboard.button("SPC SPC", "󰱼 Find file"),
   dashboard.button("SPC /", " Find word"),
   dashboard.button("SPC f r", " Recent files"),
+  dashboard.button("SPC q s", "󰑌 Open session for this folder"),
   dashboard.button("SPC q l", "󱎝 Open last session"),
   dashboard.button("q", " Quit", "<cmd>qa<cr>"),
 }
