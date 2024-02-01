@@ -12,5 +12,6 @@ in
 
     shellHook = ''
       export PYTHON_ENV="${myPython}/bin"
+      export VIRTUAL_ENV="${myPython}"
     '';
   }
