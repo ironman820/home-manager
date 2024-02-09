@@ -55,11 +55,11 @@
       url = "github:mic92/nix-ld";
     };
     nixos-hardware.url = "https://flakehub.com/f/NixOS/nixos-hardware/0.1.*.tar.gz";
-    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/*.tar.gz";
+    nixpkgs.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2311.*.tar.gz";
     # acc5f7b - IcedTea v8 Stable
-    nixpkgs-acc5f7b.url = "https://flakehub.com/f/NixOS/nixpkgs/=0.2105.296223.tar.gz";
+    nixpkgs-acc5f7b.url = "github:nixos/nixpkgs/acc5f7b";
     # ba45a55 - The last stable update of PHP 7.4
-    nixpkgs-ba45a55.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2205.384653.tar.gz";
+    nixpkgs-ba45a55.url = "github:nixos/nixpkgs/ba45a55";
     nvim-cmp-nerdfont = {
       flake = false;
       url = "github:chrisgrieser/cmp-nerdfont";
@@ -84,10 +84,6 @@
       flake = false;
       url = "github:alexanderjeurissen/ranger_devicons";
     };
-    snowfall-lib = {
-      inputs.nixpkgs.follows = "nixpkgs";
-      url = "https://flakehub.com/f/snowfallorg/lib/2.*.tar.gz";
-    };
     sops-nix = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "https://flakehub.com/f/Mic92/sops-nix/0.1.*.tar.gz";
@@ -111,33 +107,127 @@
     };
   };
 
-  outputs = inputs: let
-    lib = inputs.snowfall-lib.mkLib {
-      inherit inputs;
-      src = ./.;
+  outputs = {self, ...} @ inputs: let
+    inherit (builtins) listToAttrs map;
+    inherit (inputs.nixpkgs) lib;
+    inherit (lib.lists) foldr forEach take;
+    inherit (lib.strings) splitString;
 
-      snowfall = {
-        meta = {
-          name = "ironman";
-          title = "Ironman Home Config";
-        };
-        namespace = "ironman";
-      };
-    };
-  in
-    lib.mkFlake {
+    defaultImports = {
+      inherit overlays;
+      inherit (systemSettings) system;
+
       channels-config = {
         allowUnfree = true;
+        allowUnfreePredicate = _: true;
         permittedInsecurePackages = ["openssl-1.1.1w"];
       };
+    };
 
-      homes.modules = with inputs; [sops-nix.homeManagerModules.sops];
+    hostSystems = [
+      "ironman@docker"
+      "ironman@friday"
+      "ironman@git-home"
+      "ironman@ironman-laptop"
+      "ironman@pdns-home"
+      "ironman@pdns-work"
+      "ironman@pxe-home"
+      "ironman@pxe-work"
+      "ironman@qc-work"
+      "ironman@rcm-work"
+      "ironman@rcm2-home"
+      "ironman@rcm2-work"
+      "ironman@tdarr2"
+      "ironman@traefik-work"
+      "niceastman@e105-laptop"
+      "nixos@liveiso"
+      "royell@health"
+      "royell@pass"
+      "royell@zabbix"
+    ];
 
-      overlays = with inputs; [
-        flake.overlays.default
-        blockyalarm.overlays."package/blockyalarm"
+    overlayList = [];
+
+    overlays =
+      [
+        inputs.flake.overlays.default
+        (import ./lib {})
+      ]
+      ++ forEach overlayList (layer:
+        import ./overlays/${layer} {
+          inherit inputs self;
+          inherit (systemSettings) system;
+        });
+
+    packageList = [];
+
+    pkgs = import inputs.nixpkgs defaultImports;
+
+    systemSettings = {
+      locale = "en_US.UTF-8";
+      modules = with inputs; [
+        sops-nix.homeManagerModules.sops
+        ./modules
       ];
 
-      alias = {shells.default = "ironman-shell";};
+      system = "x86_64-linux";
+      timezone = "America/Chicago";
     };
+
+    userSettings = rec {
+      wm = "hyprland";
+      wmType =
+        if (wm == "hyprland")
+        then "wayland"
+        else "x11";
+      browser = "floorp";
+      term = "alacritty";
+      editor = "nvim";
+
+      spawnEditor =
+        if (editor == "emacsclient")
+        then "emacsclient -c -a 'emacs'"
+        else
+          (
+            if
+              ((editor == "vim")
+                || (
+                  editor == "nvim"
+                )
+                || (editor == "nano"))
+            then "exec " + term + " -e " + editor
+            else editor
+          );
+      font = "FiraCode Nerd Font Retina";
+      fontPkg = pkgs.nerdfonts;
+    };
+  in {
+    inherit lib pkgs;
+
+    # overlays = with inputs; [
+    #   blockyalarm.overlays."package/blockyalarm"
+    # ];
+
+    # alias = {shells.default = "ironman-shell";};
+
+    homeConfigurations = listToAttrs (map (sys: {
+        name = foldr (a: b: a + b) "" (take 1 (splitString "@" sys));
+        value = inputs.home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          inherit (systemSettings) system;
+          extraSpecialArgs = {
+            inherit inputs pkgs self systemSettings userSettings;
+            inherit (pkgs) lib;
+          };
+          modules = [./homes/${sys}] ++ systemSettings.modules;
+        };
+      })
+      hostSystems);
+
+    packages.${systemSettings.system} = listToAttrs (map (pkg: {
+        name = pkg;
+        value = import ./packages/${pkg} {inherit inputs pkgs;};
+      })
+      packageList);
+  };
 }
