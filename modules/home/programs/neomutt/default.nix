@@ -66,7 +66,6 @@ in {
     home = {
       packages = with pkgs; [
         abook
-        browsh
         cacert
         curl
         fim
@@ -88,7 +87,7 @@ in {
       "mutt/mailcap".text = ''
         text/csv; ${pkgs.libreoffice-fresh}/lib/libreoffice/program/soffice %s ;
         text/plain; $EDITOR %s ;
-        text/html; lynx -assume_charset=%{charset} -display_charset=utf-8 -dump -width=1024 %s; nametemplate=%s.html; copiousoutput;
+        text/html; ${pkgs.lynx}/bin/lynx -assume_charset=%{charset} -display_charset=utf-8 -dump -width=1024 %s; nametemplate=%s.html; copiousoutput;
         text/html; ${pkgs.mutt-wizard}/lib/mutt-wizard/openfile %s ; nametemplate=%s.html
         image/*; fim %s ;
         image/*; ${pkgs.mutt-wizard}/lib/mutt-wizard/openfile %s ;

@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.ironman.home.gui-apps;
 in {
@@ -24,17 +28,18 @@ in {
         putty
         remmina
         # steam
+        tauon
         telegram-desktop
         vlc
         virt-viewer
       ];
-      sessionVariables = { BROWSER = "brave"; };
+      sessionVariables = {BROWSER = "floorp";};
     };
     programs.hexchat = mkIf cfg.hexchat {
       enable = cfg.hexchat;
       channels = {
         irchighway = {
-          autojoin = [ "#ebooks" ];
+          autojoin = ["#ebooks"];
           charset = "UTF-8 (Unicode)";
           options = {
             acceptInvalidSSLCertificates = true;
@@ -42,7 +47,7 @@ in {
             bypassProxy = true;
             forceSSL = false;
           };
-          servers = [ "irc.irchighway.net" ];
+          servers = ["irc.irchighway.net"];
         };
       };
     };

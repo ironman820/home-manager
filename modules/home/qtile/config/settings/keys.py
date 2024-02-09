@@ -1,7 +1,7 @@
-from libqtile.config import Key, KeyChord
 from libqtile.command import lazy
+from libqtile.config import Key, KeyChord
 
-browser: str = "brave"
+browser: str = "floorp"
 rofi: str = "rofi -show drun -show-icons"
 terminal: str = "kitty"
 ranger = f"{terminal} bash -c ranger ~"
