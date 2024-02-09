@@ -1,5 +1,9 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (lib) mkEnableOption mkIf;
   inherit (lib.ironman) mkOpt;
   inherit (lib.strings) concatStringsSep;
@@ -15,7 +19,8 @@ in {
 
   config = mkIf cfg.enable {
     home = {
-      file = let inherit (cfg) primaryScale;
+      file = let
+        inherit (cfg) primaryScale;
       in {
         ".config/hypr/hyprland.conf".source = ./hyprland-config/hyprland.conf;
         ".config/hypr/monitor.conf".text = concatStringsSep "\n" [
@@ -31,18 +36,18 @@ in {
           ''
             bindl = , switch:on:Lid Switch,exec,hyprctl keyword monitor "eDP-1, disable"''
         ];
-        ".config/hypr/hyprpaper.conf".text = mkIf (cfg.wallpaper != "") ''
-          preload = ${cfg.wallpaper}
-          wallpaper = , ${cfg.wallpaper}
-        '';
-        ".config/hyprland-autoname-workspaces/config.toml".source =
-          ./hyprland-autoname-workspaces.toml;
+        # ".config/hypr/hyprpaper.conf".text = mkIf (cfg.wallpaper != "") ''
+        #   preload = ${cfg.wallpaper}
+        #   wallpaper = , ${cfg.wallpaper}
+        # '';
+        # ".config/hyprland-autoname-workspaces/config.toml".source =
+        #   ./hyprland-autoname-workspaces.toml;
         ".config/hypr/waybar.conf".text = ''
           exec-once = ${pkgs.ironman.start-waybar}/bin/start-waybar &
         '';
         ".config/waybar".source = ./waybar-config;
       };
-      packages = with pkgs.ironman; [ start-waybar ];
+      packages = with pkgs.ironman; [start-waybar];
     };
   };
 }
