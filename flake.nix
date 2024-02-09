@@ -60,6 +60,10 @@
     nixpkgs-acc5f7b.url = "https://flakehub.com/f/NixOS/nixpkgs/=0.2105.296223.tar.gz";
     # ba45a55 - The last stable update of PHP 7.4
     nixpkgs-ba45a55.url = "https://flakehub.com/f/NixOS/nixpkgs/0.2205.384653.tar.gz";
+    nixvim = {
+      inputs.nixpkgs.follows = "unstable";
+      url = "git+file:./packages/nvim";
+    };
     nvim-cmp-nerdfont = {
       flake = false;
       url = "github:chrisgrieser/cmp-nerdfont";

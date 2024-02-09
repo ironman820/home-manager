@@ -1,0 +1,3 @@
+[submodule "neovim"]
+	path = nvim
+	url = git@github.com:ironman820/neovim.git
