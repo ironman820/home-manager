@@ -1,5 +1,5 @@
 { channels, ...}:
 final: prev:
 {
-  inherit (prev.ironman) catppuccin-rofi;
+  inherit (prev.mine) catppuccin-rofi;
 }

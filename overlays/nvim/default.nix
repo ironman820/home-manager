@@ -1,7 +1,7 @@
 { channels, ... }:
 final: prev: {
   vimPlugins = prev.vimPlugins // {
-    inherit (prev.ironman)
+    inherit (prev.mine)
       cloak-nvim cmp-nerdfont conceal-nvim nvim-undotree obsidian-nvim
       one-small-step-for-vimkind yanky-nvim;
     inherit (channels.unstable.vimPlugins) efmls-configs-nvim;

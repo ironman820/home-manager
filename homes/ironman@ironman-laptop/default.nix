@@ -1,9 +1,9 @@
 { lib, pkgs, ...}:
 let
-  inherit (lib.ironman) enabled;
+  inherit (lib.mine) enabled;
 in
 {
-  ironman.home = {
+  mine.home = {
     gui-apps.hexchat = true;
     networking = enabled;
     personal-apps = enabled;

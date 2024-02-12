@@ -1,7 +1,7 @@
 { lib, ... }:
-let inherit (lib.ironman) enabled;
+let inherit (lib.mine) enabled;
 in {
-  ironman.home = {
+  mine.home = {
     programs = { ranger = enabled; };
     sops.install = true;
     suites.server = enabled;

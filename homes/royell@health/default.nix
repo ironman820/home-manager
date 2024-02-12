@@ -1,8 +1,8 @@
 { config, format, home, host, inputs, lib, pkgs, systems, target, virtual, ...}:
 let
-  inherit (lib.ironman) enabled;
+  inherit (lib.mine) enabled;
 in {
-  ironman.home = {
+  mine.home = {
     programs.ranger = enabled;
     suites.server = enabled;
     user.name = config.snowfallorg.user.name;

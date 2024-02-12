@@ -1,7 +1,7 @@
 { config, lib, ... }:
-let inherit (lib.ironman) enabled;
+let inherit (lib.mine) enabled;
 in {
-  ironman.home = {
+  mine.home = {
     suites.server = enabled;
     user.name = config.snowfallorg.user.name;
   };

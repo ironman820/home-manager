@@ -1,7 +1,7 @@
 { config, lib, ... }:
-let inherit (lib.ironman) enabled;
+let inherit (lib.mine) enabled;
 in {
-  ironman.home = {
+  mine.home = {
     suites.server = {
       enable = true;
       rcm2 = enabled;

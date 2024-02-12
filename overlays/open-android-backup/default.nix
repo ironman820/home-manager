@@ -1,3 +1,3 @@
 {channels, ...}: final: prev: {
-  inherit (prev.ironman) open-android-backup;
+  inherit (prev.mine) open-android-backup;
 }

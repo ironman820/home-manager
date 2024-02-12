@@ -1,3 +1,3 @@
 {channels, ...}: final: prev: {
-  inherit (prev.ironman) idracclient switchssh;
+  inherit (prev.mine) idracclient switchssh;
 }
