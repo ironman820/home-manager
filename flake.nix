@@ -110,8 +110,7 @@
   outputs = {self, ...} @ inputs: let
     inherit (builtins) listToAttrs map;
     inherit (inputs.nixpkgs) lib;
-    inherit (lib.lists) foldr forEach take;
-    inherit (lib.strings) splitString;
+    inherit (lib.lists) forEach;
 
     defaultImports = {
       inherit overlays;
@@ -211,7 +210,7 @@
     # alias = {shells.default = "ironman-shell";};
 
     homeConfigurations = listToAttrs (map (sys: {
-        name = foldr (a: b: a + b) "" (take 1 (splitString "@" sys));
+        name = sys;
         value = inputs.home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           inherit (systemSettings) system;
@@ -219,7 +218,7 @@
             inherit inputs pkgs self systemSettings userSettings;
             inherit (pkgs) lib;
           };
-          modules = [./homes/${sys}] ++ systemSettings.modules;
+          modules = ["./homes/${sys}"] ++ systemSettings.modules;
         };
       })
       hostSystems);
