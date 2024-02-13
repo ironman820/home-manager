@@ -1,16 +1,20 @@
-{ config, lib, pkgs, ... }:
-let
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}: let
   inherit (lib.ironman) enabled;
   sopsFile = ./secrets/work-keys.yaml;
   sshFolder = "${config.home.homeDirectory}/.ssh";
 in {
-  home = { packages = with pkgs; [ ironman.blockyalarm steam-run ]; };
+  home = {packages = with pkgs; [ironman.blockyalarm steam-run];};
   ironman.home = {
     sops.secrets = {
-      github_home = { inherit sopsFile; };
+      github_home = {inherit sopsFile;};
       github_home_pub.path = "${sshFolder}/github_home.pub";
       github_work_pub.path = "${sshFolder}/github.pub";
-      id_ed25519_sk = { inherit sopsFile; };
+      id_ed25519_sk = {inherit sopsFile;};
       id_ed25519_sk_work_pub.path = "${sshFolder}/id_ed25519_sk.pub";
       id_ed25519_sk_work2 = {
         inherit sopsFile;
@@ -19,6 +23,7 @@ in {
       };
       yb_keys.sopsFile = ./secrets/yb_keys.sops;
     };
+    hyprland.wallpaper = "/home/${config.ironman.home.user.name}/wallpapers/zelda-breath-of-the-wild-guides-2.jpg";
     gui-apps.hexchat = true;
     networking = enabled;
     programs = {

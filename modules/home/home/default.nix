@@ -20,6 +20,7 @@ in {
         neofetch
         nerdfonts
         nodejs_18
+        p7zip
         poppler_utils
         pv
         qrencode

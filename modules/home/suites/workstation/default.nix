@@ -1,5 +1,8 @@
-{ config, lib, ... }:
-let
+{
+  config,
+  lib,
+  ...
+}: let
   inherit (lib) mkEnableOption mkIf;
   inherit (lib.ironman) disabled enabled;
   cfg = config.ironman.home.suites.workstation;
@@ -11,7 +14,7 @@ in {
   config = mkIf cfg.enable {
     ironman.home = {
       gui-apps = enabled;
-      qtile = enabled;
+      hyprland = enabled;
       rofi = enabled;
       sync = enabled;
       video-tools = enabled;
